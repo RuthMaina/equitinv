@@ -98,9 +98,10 @@ for (Component C : panel.getComponents())
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Add = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        btnAdd = new javax.swing.JLabel();
         btnDelete1 = new javax.swing.JLabel();
-        btnClr = new javax.swing.JLabel();
         btnSave1 = new javax.swing.JLabel();
+        btnClr = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblAddition = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
@@ -132,8 +133,8 @@ for (Component C : panel.getComponents())
         tblRemoval = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         btnDelete2 = new javax.swing.JLabel();
-        btnClr1 = new javax.swing.JLabel();
         btnSave2 = new javax.swing.JLabel();
+        btnClr1 = new javax.swing.JLabel();
         Reports = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -449,9 +450,8 @@ for (Component C : panel.getComponents())
             .addGroup(StockLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnReportStock, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReportStock, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(StockLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -474,7 +474,20 @@ for (Component C : panel.getComponents())
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new java.awt.GridLayout(2, 2, 10, 10));
 
-        btnDelete1.setBackground(new java.awt.Color(219, 79, 17));
+        btnAdd.setBackground(new java.awt.Color(255, 164, 19));
+        btnAdd.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAdd.setText("Add Item");
+        btnAdd.setOpaque(true);
+        btnAdd.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnAddMouseMoved(evt);
+            }
+        });
+        jPanel4.add(btnAdd);
+
+        btnDelete1.setBackground(new java.awt.Color(255, 164, 19));
         btnDelete1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnDelete1.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -486,19 +499,6 @@ for (Component C : panel.getComponents())
             }
         });
         jPanel4.add(btnDelete1);
-
-        btnClr.setBackground(new java.awt.Color(255, 164, 19));
-        btnClr.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnClr.setForeground(new java.awt.Color(255, 255, 255));
-        btnClr.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnClr.setText("Clear Table");
-        btnClr.setOpaque(true);
-        btnClr.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnClrMouseMoved(evt);
-            }
-        });
-        jPanel4.add(btnClr);
 
         btnSave1.setBackground(new java.awt.Color(255, 164, 19));
         btnSave1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -513,20 +513,33 @@ for (Component C : panel.getComponents())
         });
         jPanel4.add(btnSave1);
 
+        btnClr.setBackground(new java.awt.Color(219, 79, 17));
+        btnClr.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnClr.setForeground(new java.awt.Color(255, 255, 255));
+        btnClr.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnClr.setText("Clear Table");
+        btnClr.setOpaque(true);
+        btnClr.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnClrMouseMoved(evt);
+            }
+        });
+        jPanel4.add(btnClr);
+
         tblAddition.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblAddition.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Pencils", "120", "pcs", "30"},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {"Pencils", "120", "pcs", "30"},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Qty", "Unit", "Low qty"
+                "Item", "Qty", "Unit", "Low qty"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -537,16 +550,13 @@ for (Component C : panel.getComponents())
         jScrollPane2.setViewportView(tblAddition);
         if (tblAddition.getColumnModel().getColumnCount() > 0) {
             tblAddition.getColumnModel().getColumn(0).setResizable(false);
-            tblAddition.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tblAddition.getColumnModel().getColumn(0).setPreferredWidth(150);
             tblAddition.getColumnModel().getColumn(1).setResizable(false);
-            tblAddition.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tblAddition.getColumnModel().getColumn(1).setPreferredWidth(30);
             tblAddition.getColumnModel().getColumn(2).setResizable(false);
-            tblAddition.getColumnModel().getColumn(2).setPreferredWidth(30);
+            tblAddition.getColumnModel().getColumn(2).setPreferredWidth(40);
             tblAddition.getColumnModel().getColumn(3).setResizable(false);
-            tblAddition.getColumnModel().getColumn(3).setPreferredWidth(40);
-            tblAddition.getColumnModel().getColumn(4).setResizable(false);
-            tblAddition.getColumnModel().getColumn(4).setPreferredWidth(20);
-            tblAddition.getColumnModel().getColumn(4).setHeaderValue("Low qty");
+            tblAddition.getColumnModel().getColumn(3).setPreferredWidth(20);
         }
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -808,13 +818,12 @@ for (Component C : panel.getComponents())
             tblRemoval.getColumnModel().getColumn(3).setPreferredWidth(40);
             tblRemoval.getColumnModel().getColumn(4).setResizable(false);
             tblRemoval.getColumnModel().getColumn(4).setPreferredWidth(50);
-            tblRemoval.getColumnModel().getColumn(4).setHeaderValue("Status");
         }
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new java.awt.GridLayout(2, 2, 10, 10));
 
-        btnDelete2.setBackground(new java.awt.Color(219, 79, 17));
+        btnDelete2.setBackground(new java.awt.Color(255, 164, 19));
         btnDelete2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnDelete2.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -826,19 +835,6 @@ for (Component C : panel.getComponents())
             }
         });
         jPanel6.add(btnDelete2);
-
-        btnClr1.setBackground(new java.awt.Color(255, 164, 19));
-        btnClr1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnClr1.setForeground(new java.awt.Color(255, 255, 255));
-        btnClr1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnClr1.setText("Clear Table");
-        btnClr1.setOpaque(true);
-        btnClr1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnClr1MouseMoved(evt);
-            }
-        });
-        jPanel6.add(btnClr1);
 
         btnSave2.setBackground(new java.awt.Color(255, 164, 19));
         btnSave2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -852,6 +848,19 @@ for (Component C : panel.getComponents())
             }
         });
         jPanel6.add(btnSave2);
+
+        btnClr1.setBackground(new java.awt.Color(219, 79, 17));
+        btnClr1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnClr1.setForeground(new java.awt.Color(255, 255, 255));
+        btnClr1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnClr1.setText("Clear Table");
+        btnClr1.setOpaque(true);
+        btnClr1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnClr1MouseMoved(evt);
+            }
+        });
+        jPanel6.add(btnClr1);
 
         javax.swing.GroupLayout RemoveLayout = new javax.swing.GroupLayout(Remove);
         Remove.setLayout(RemoveLayout);
@@ -1025,10 +1034,11 @@ for (Component C : panel.getComponents())
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1176,10 +1186,11 @@ for (Component C : panel.getComponents())
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1327,10 +1338,11 @@ for (Component C : panel.getComponents())
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSearch3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearch3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1909,6 +1921,10 @@ for (Component C : panel.getComponents())
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
 
+    private void btnAddMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddMouseMoved
+
     /**
      * @param args the command line arguments
      */
@@ -1957,6 +1973,7 @@ for (Component C : panel.getComponents())
     private javax.swing.JPanel Settings;
     private javax.swing.ButtonGroup Status;
     private javax.swing.JPanel Stock;
+    private javax.swing.JLabel btnAdd;
     private javax.swing.JLabel btnClr;
     private javax.swing.JLabel btnClr1;
     private javax.swing.JLabel btnDelete;
