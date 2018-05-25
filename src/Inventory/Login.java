@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Invetory;
+package Inventory;
 
 import com.placeholder.PlaceHolder;
 
@@ -46,12 +46,10 @@ public class Login extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         cboType = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(345, 356));
-        setUndecorated(true);
         setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -78,12 +76,12 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setBounds(40, 270, 30, 30);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Cambria", 0, 30)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(169, 75, 1));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("LOGIN");
         jPanel3.add(jLabel3);
-        jLabel3.setBounds(80, 110, 190, 40);
+        jLabel3.setBounds(90, 110, 190, 40);
 
         jSeparator1.setForeground(new java.awt.Color(104, 104, 104));
         jPanel3.add(jSeparator1);
@@ -143,22 +141,10 @@ public class Login extends javax.swing.JFrame {
         jPanel3.add(jLabel9);
         jLabel9.setBounds(110, 320, 150, 35);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("X");
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
-        jPanel3.add(jLabel4);
-        jLabel4.setBounds(350, 0, 20, 25);
-
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.jpg"))); // NOI18N
         jPanel3.add(jLabel5);
-        jLabel5.setBounds(90, 0, 160, 80);
+        jLabel5.setBounds(110, 20, 160, 80);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,11 +177,6 @@ public class Login extends javax.swing.JFrame {
         m.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -239,7 +220,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

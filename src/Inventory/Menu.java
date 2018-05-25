@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Invetory;
+package Inventory;
 
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
@@ -232,7 +232,6 @@ for (Component C : panel.getComponents())
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(845, 523));
-        setPreferredSize(new java.awt.Dimension(845, 523));
         getContentPane().setLayout(new java.awt.BorderLayout(10, 10));
 
         Header.setBackground(new java.awt.Color(255, 255, 255));
@@ -244,7 +243,7 @@ for (Component C : panel.getComponents())
         jLabel7.setText("Administrator");
         jLabel7.setIconTextGap(5);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Cambria", 0, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(169, 75, 1));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Inventory Management");
@@ -260,21 +259,17 @@ for (Component C : panel.getComponents())
                 .addComponent(jLabel1)
                 .addGap(88, 88, 88)
                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(136, 136, 136)
+                .addGap(93, 93, 93)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         HeaderLayout.setVerticalGroup(
             HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderLayout.createSequentialGroup()
-                .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(HeaderLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HeaderLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         getContentPane().add(Header, java.awt.BorderLayout.PAGE_START);
