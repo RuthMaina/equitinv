@@ -28,6 +28,7 @@ public class Menu extends javax.swing.JFrame {
     
     public Menu(String user) {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         jLabel7.setText(user);
         TPanel(Stock);
         ChangeColor(Menu, btnStock);
@@ -36,6 +37,8 @@ public class Menu extends javax.swing.JFrame {
         holder = new PlaceHolder(txtSearch, "Search by item name");
         holder = new PlaceHolder(txtName2, "Click the search button to search for the item");
         holder = new PlaceHolder(txtSearch1, "Click the search button to search for the item");
+        holder = new PlaceHolder(txtSearch2, "Click the search button to search for the item");
+        holder = new PlaceHolder(txtSearch3, "Click the search button to search for the item");
     }
     
     // Color on selected menu item
@@ -1776,14 +1779,14 @@ for (Component C : panel.getComponents())
                             .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                             .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUser)
                             .addComponent(cboType, 0, 244, Short.MAX_VALUE)))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
