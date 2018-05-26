@@ -64,6 +64,7 @@ public class Menu extends javax.swing.JFrame {
         holder = new PlaceHolder(txtSearch1, "Click the search icon to search for the item");
         holder = new PlaceHolder(txtSearch2, "Click the search icon to search for the item");
         holder = new PlaceHolder(txtSearch3, "Click the search icon to search for the item");
+         FillTable(tablenewuser,"SELECT `Id`, `username`, type from user where id != " +Integer.parseInt(permuid)+"");
            FillTable(tblStock,"SELECT  `Iname`, quantity,unit,perunit from items");
          FillTable(tableItem,"SELECT `Id`, `Iname`, quantity from items");
           FillTable(tblRemoval,"SELECT removal.id,removal.itemid, `Iname`, removal.quantity,status from removal INNER JOIN items on removal.itemid = items.id where isRemoved = 0");
@@ -123,6 +124,7 @@ for (Component C : panel.getComponents())
         btnInventory = new javax.swing.JLabel();
         btnReports = new javax.swing.JLabel();
         btnSettings = new javax.swing.JLabel();
+        btnSettings1 = new javax.swing.JLabel();
         Body = new javax.swing.JPanel();
         Stock = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -273,15 +275,15 @@ for (Component C : panel.getComponents())
         btnSave3 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tablenewuser = new javax.swing.JTable();
         jLabel32 = new javax.swing.JLabel();
-        txtUser = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
-        cboType = new javax.swing.JComboBox<>();
+        ComboType = new javax.swing.JComboBox<>();
         jPanel13 = new javax.swing.JPanel();
-        btnSave = new javax.swing.JLabel();
-        btnDelete = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        SaveNewUser = new javax.swing.JButton();
+        SaveNewUser1 = new javax.swing.JButton();
+        DeleteNewUser = new javax.swing.JButton();
+        UserNamenew = new javax.swing.JTextField();
 
         DialogSearchItemAdd.setTitle("Select Item");
 
@@ -519,6 +521,7 @@ for (Component C : panel.getComponents())
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Equity Bank Inventory Control");
+        setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(845, 523));
         getContentPane().setLayout(new java.awt.BorderLayout(10, 10));
 
@@ -655,6 +658,28 @@ for (Component C : panel.getComponents())
             }
         });
         Menu.add(btnSettings);
+
+        btnSettings1.setBackground(new java.awt.Color(255, 255, 255));
+        btnSettings1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnSettings1.setForeground(new java.awt.Color(65, 64, 66));
+        btnSettings1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSettings1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-exit-filled-35.png"))); // NOI18N
+        btnSettings1.setText("Logout");
+        btnSettings1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSettings1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSettings1.setOpaque(true);
+        btnSettings1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSettings1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnSettings1MouseMoved(evt);
+            }
+        });
+        btnSettings1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSettings1MouseClicked(evt);
+            }
+        });
+        Menu.add(btnSettings1);
 
         getContentPane().add(Menu, java.awt.BorderLayout.LINE_START);
 
@@ -2012,7 +2037,7 @@ for (Component C : panel.getComponents())
         );
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mail Configuration", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GMail Configuration", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("From");
@@ -2095,7 +2120,7 @@ for (Component C : panel.getComponents())
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ComboEmail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboEmail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GMAIL", "WEBSITE" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -2221,8 +2246,8 @@ for (Component C : panel.getComponents())
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tablenewuser.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tablenewuser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Pencils", "120"},
                 {null, null, null},
@@ -2241,48 +2266,79 @@ for (Component C : panel.getComponents())
                 return canEdit [columnIndex];
             }
         });
-        jTable4.setRowHeight(18);
-        jScrollPane4.setViewportView(jTable4);
-        if (jTable4.getColumnModel().getColumnCount() > 0) {
-            jTable4.getColumnModel().getColumn(0).setResizable(false);
-            jTable4.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTable4.getColumnModel().getColumn(1).setResizable(false);
-            jTable4.getColumnModel().getColumn(1).setPreferredWidth(150);
-            jTable4.getColumnModel().getColumn(2).setResizable(false);
-            jTable4.getColumnModel().getColumn(2).setPreferredWidth(30);
+        tablenewuser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablenewuser.setRowHeight(18);
+        tablenewuser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablenewuserMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tablenewuser);
+        if (tablenewuser.getColumnModel().getColumnCount() > 0) {
+            tablenewuser.getColumnModel().getColumn(0).setResizable(false);
+            tablenewuser.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tablenewuser.getColumnModel().getColumn(1).setResizable(false);
+            tablenewuser.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablenewuser.getColumnModel().getColumn(2).setResizable(false);
+            tablenewuser.getColumnModel().getColumn(2).setPreferredWidth(30);
         }
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel32.setText("Username");
 
-        txtUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel33.setText("User type");
 
-        cboType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "User" }));
+        ComboType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ComboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "User" }));
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel13.setLayout(new java.awt.GridLayout(1, 2, 10, 0));
+        jPanel13.setLayout(new java.awt.GridLayout(2, 2, 10, 10));
 
-        btnSave.setBackground(new java.awt.Color(255, 164, 19));
-        btnSave.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnSave.setForeground(new java.awt.Color(255, 255, 255));
-        btnSave.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSave.setText("Save");
-        btnSave.setOpaque(true);
-        jPanel13.add(btnSave);
+        SaveNewUser.setBackground(new java.awt.Color(255, 164, 19));
+        SaveNewUser.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        SaveNewUser.setForeground(new java.awt.Color(255, 255, 255));
+        SaveNewUser.setText("Save");
+        SaveNewUser.setBorderPainted(false);
+        SaveNewUser.setContentAreaFilled(false);
+        SaveNewUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SaveNewUser.setOpaque(true);
+        SaveNewUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveNewUserActionPerformed(evt);
+            }
+        });
+        jPanel13.add(SaveNewUser);
 
-        btnDelete.setBackground(new java.awt.Color(219, 79, 17));
-        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnDelete.setText("Delete");
-        btnDelete.setOpaque(true);
-        jPanel13.add(btnDelete);
+        SaveNewUser1.setBackground(new java.awt.Color(255, 164, 19));
+        SaveNewUser1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        SaveNewUser1.setForeground(new java.awt.Color(255, 255, 255));
+        SaveNewUser1.setText("Clear Field");
+        SaveNewUser1.setBorderPainted(false);
+        SaveNewUser1.setContentAreaFilled(false);
+        SaveNewUser1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SaveNewUser1.setOpaque(true);
+        SaveNewUser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveNewUser1ActionPerformed(evt);
+            }
+        });
+        jPanel13.add(SaveNewUser1);
 
-        jButton1.setText("LOGS REPORT");
+        DeleteNewUser.setBackground(new java.awt.Color(219, 79, 17));
+        DeleteNewUser.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        DeleteNewUser.setForeground(new java.awt.Color(255, 255, 255));
+        DeleteNewUser.setText("Delete");
+        DeleteNewUser.setBorderPainted(false);
+        DeleteNewUser.setContentAreaFilled(false);
+        DeleteNewUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DeleteNewUser.setOpaque(true);
+        DeleteNewUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteNewUserActionPerformed(evt);
+            }
+        });
+        jPanel13.add(DeleteNewUser);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -2291,25 +2347,20 @@ for (Component C : panel.getComponents())
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUser)
-                                    .addComponent(cboType, 0, 252, Short.MAX_VALUE)))
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ComboType, 0, 303, Short.MAX_VALUE)
+                            .addComponent(UserNamenew))
                         .addGap(15, 15, 15))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(jButton1)
+                        .addGap(27, 27, 27)
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -2319,17 +2370,15 @@ for (Component C : panel.getComponents())
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(UserNamenew, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton1)
+                            .addComponent(ComboType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -2569,6 +2618,7 @@ String ItemID = "";
               DBConnect.ps.setInt(4, Integer.parseInt(permuid));
             DBConnect.ps.execute();
              con.close();
+            
  FillTable(tblAddition,"SELECT shipment.id,shipment.itemid, `Iname`, shipment.quantity from shipment INNER JOIN items on shipment.itemid = items.id where status = 0");        } catch (SQLException e ) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -2845,6 +2895,106 @@ if(tableModel.getRowCount() > 0){
                 + " WHERE Iname LIKE '%" + txtSearchStock.getText() + "%' ");
     }//GEN-LAST:event_txtSearchStockCaretUpdate
 
+    private void btnSettings1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettings1MouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSettings1MouseMoved
+
+    private void btnSettings1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettings1MouseClicked
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            Login l = new Login();
+            l.setVisible(true);
+            Connection con = DBConnect.connect();
+            String sql = "INSERT INTO `logs`(`userid`, `action` ) VALUES (?,?)";
+            DBConnect.ps = con.prepareStatement(sql);
+            DBConnect.ps.setInt(1, Integer.parseInt(permuid));
+            DBConnect.ps.setString(2, "Logged Out");
+            DBConnect.ps.execute();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSettings1MouseClicked
+
+    private void SaveNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveNewUserActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Connection con = DBConnect.connect();
+            String sql = "INSERT INTO `user`(`type`, `username`,password ) VALUES (?,?,?)";
+            DBConnect.ps = con.prepareStatement(sql);
+            DBConnect.ps.setString(1, ComboType.getSelectedItem().toString());
+            DBConnect.ps.setString(2, UserNamenew.getText());
+            DBConnect.ps.setString(3, "1234");
+            DBConnect.ps.execute();
+             FillTable(tablenewuser,"SELECT `Id`, `username`, type from user where id != " +Integer.parseInt(permuid)+"");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_SaveNewUserActionPerformed
+
+    private void tablenewuserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablenewuserMouseClicked
+        // TODO add your handling code here:
+         int selectedRow = tablenewuser.getSelectedRow();
+        String hid = tablenewuser.getValueAt(selectedRow, 0).toString();
+        try {
+           Connection con = DBConnect.connect();
+            String sql = "select * FROM user WHERE id = ?";
+            DBConnect.ps = con.prepareStatement(sql);
+            DBConnect.ps.setString(1,hid);
+            DBConnect.rs = DBConnect.ps.executeQuery();
+            if(DBConnect.rs.next()) {   
+                 ComboType.setSelectedItem(DBConnect.rs.getString(2));
+                   UserNamenew.setText(DBConnect.rs.getString(3));
+            }
+            con.close();
+            DeleteNewUser.setEnabled(true);
+            SaveNewUser.setEnabled(false);
+            SaveNewUser.setBackground(new Color(244, 244, 244));
+             DeleteNewUser.setBackground(new Color(219,79,17));
+
+        } catch (SQLException ex ) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }//GEN-LAST:event_tablenewuserMouseClicked
+
+    private void DeleteNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteNewUserActionPerformed
+        // TODO add your handling code here:
+           try {
+               int row = tablenewuser.getSelectedRow();    
+            Connection con = DBConnect.connect();
+            String query = "DELETE FROM user WHERE id = ?";
+            DBConnect.ps = con.prepareStatement(query);
+            DBConnect.ps.setString(1, tablenewuser.getModel().getValueAt(row, 0).toString());
+            DBConnect.ps.executeUpdate();
+            con.close();
+            JOptionPane.showMessageDialog(null, "Record Deleted");
+          FillTable(tablenewuser,"SELECT `Id`, `username`, type from user where id != " +Integer.parseInt(permuid)+"");
+            UserNamenew.setText("");
+            DeleteNewUser.setEnabled(false);
+            SaveNewUser.setEnabled(true);
+            DeleteNewUser.setBackground(new Color(244, 244, 244));
+             SaveNewUser.setBackground(new Color(255,164,19));
+        } catch (SQLException e ) {
+            if(e.getErrorCode() == 1451)
+            JOptionPane.showMessageDialog(null, "You cannot delete this field it has dependancies");
+            else
+               JOptionPane.showMessageDialog(null, e); 
+            // System.out.println(e.getErrorCode());
+        }  
+    }//GEN-LAST:event_DeleteNewUserActionPerformed
+
+    private void SaveNewUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveNewUser1ActionPerformed
+        // TODO add your handling code here:
+         UserNamenew.setText("");
+            DeleteNewUser.setEnabled(false);
+            SaveNewUser.setEnabled(true);
+            DeleteNewUser.setBackground(new Color(244, 244, 244));
+             SaveNewUser.setBackground(new Color(255,164,19));
+    }//GEN-LAST:event_SaveNewUser1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2942,6 +3092,8 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JPanel Body;
     private javax.swing.JComboBox<String> ComboEmail;
     private javax.swing.JComboBox<String> ComboRemove;
+    private javax.swing.JComboBox<String> ComboType;
+    private javax.swing.JButton DeleteNewUser;
     private javax.swing.JDialog DialogSearchItemAdd;
     private javax.swing.JDialog DialogSearchItemRemove;
     private javax.swing.JPanel Header;
@@ -2956,12 +3108,14 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JTextField NameRemove;
     private javax.swing.JPanel Remove;
     private javax.swing.JPanel Reports;
+    private javax.swing.JButton SaveNewUser;
+    private javax.swing.JButton SaveNewUser1;
     private javax.swing.JPanel Settings;
     private javax.swing.ButtonGroup Status;
     private javax.swing.JPanel Stock;
+    private javax.swing.JTextField UserNamenew;
     private javax.swing.JButton btnCItem;
     private javax.swing.JButton btnDItem;
-    private javax.swing.JLabel btnDelete;
     private javax.swing.JLabel btnInventory;
     private javax.swing.JButton btnRemoveAdd;
     private javax.swing.JButton btnRemoveRemove;
@@ -2975,19 +3129,17 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JButton btnSItem5;
     private javax.swing.JButton btnSItemAdd;
     private javax.swing.JButton btnSItemRemove;
-    private javax.swing.JLabel btnSave;
     private javax.swing.JLabel btnSave3;
     private javax.swing.JLabel btnSave4;
     private javax.swing.JLabel btnSave5;
     private javax.swing.JLabel btnSettings;
+    private javax.swing.JLabel btnSettings1;
     private javax.swing.JLabel btnStock;
     private javax.swing.JButton btnStockRemove;
     private javax.swing.JButton btnStockS;
     private javax.swing.JButton btnUItem;
-    private javax.swing.JComboBox<String> cboType;
     private com.toedter.calendar.JDateChooser dateItemAdd;
     private com.toedter.calendar.JDateChooser dateItemRemove;
-    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -3081,11 +3233,11 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JPanel logsR;
     private javax.swing.JTable tableItem;
     private javax.swing.JTable tableItemAddS;
     private javax.swing.JTable tableItemRemove;
+    private javax.swing.JTable tablenewuser;
     private javax.swing.JTable tblAddition;
     private javax.swing.JTable tblEntry;
     private javax.swing.JTable tblReduction;
@@ -3120,6 +3272,5 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JTextField txtTo1;
     private javax.swing.JTextField txtTo2;
     private javax.swing.JTextField txtUnitItem;
-    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }
