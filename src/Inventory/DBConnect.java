@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +26,8 @@ public class DBConnect {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
               con = DriverManager.getConnection("jdbc:mysql://localhost:3306/einventory", "root", "");
               return con;
-            }catch(ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException classNotFoundException){
+            }catch(ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException ex){
+                  JOptionPane.showMessageDialog(null, ex);
                 return null;
             }
         }

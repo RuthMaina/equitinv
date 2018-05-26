@@ -6,6 +6,16 @@
 package Inventory;
 
 import com.placeholder.PlaceHolder;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -14,6 +24,7 @@ import com.placeholder.PlaceHolder;
 public class Login extends javax.swing.JFrame {
     static String user;
     static String type;
+     static String uid;
     PlaceHolder holder;
 
     /**
@@ -36,7 +47,6 @@ public class Login extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         txtUserName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -44,8 +54,7 @@ public class Login extends javax.swing.JFrame {
         txtPass = new javax.swing.JPasswordField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
-        cboType = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,19 +70,13 @@ public class Login extends javax.swing.JFrame {
         txtUserName.setToolTipText("Username");
         txtUserName.setBorder(null);
         jPanel3.add(txtUserName);
-        txtUserName.setBounds(70, 220, 235, 30);
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User Account_20px.png"))); // NOI18N
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel3.add(jLabel2);
-        jLabel2.setBounds(40, 170, 30, 30);
+        txtUserName.setBounds(80, 170, 235, 30);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Lock 2_25px.png"))); // NOI18N
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(40, 270, 30, 30);
+        jLabel1.setBounds(50, 220, 30, 30);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Cambria", 0, 30)); // NOI18N
@@ -85,18 +88,23 @@ public class Login extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(104, 104, 104));
         jPanel3.add(jSeparator1);
-        jSeparator1.setBounds(70, 300, 235, 5);
+        jSeparator1.setBounds(80, 250, 235, 5);
 
         jSeparator2.setForeground(new java.awt.Color(104, 104, 104));
         jPanel3.add(jSeparator2);
-        jSeparator2.setBounds(70, 250, 235, 5);
+        jSeparator2.setBounds(80, 200, 235, 5);
 
         txtPass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtPass.setForeground(new java.awt.Color(0, 0, 51));
         txtPass.setToolTipText("Password");
         txtPass.setBorder(null);
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPassKeyPressed(evt);
+            }
+        });
         jPanel3.add(txtPass);
-        txtPass.setBounds(70, 270, 235, 30);
+        txtPass.setBounds(80, 220, 235, 30);
 
         jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setToolTipText("Show password");
@@ -110,36 +118,35 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jCheckBox1);
-        jCheckBox1.setBounds(310, 280, 25, 25);
+        jCheckBox1.setBounds(320, 230, 25, 25);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Male User_25px.png"))); // NOI18N
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel3.add(jLabel8);
-        jLabel8.setBounds(40, 220, 30, 30);
+        jLabel8.setBounds(50, 170, 30, 30);
 
-        cboType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cboType.setForeground(new java.awt.Color(0, 0, 51));
-        cboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "User" }));
-        cboType.setBorder(null);
-        cboType.setOpaque(false);
-        jPanel3.add(cboType);
-        cboType.setBounds(70, 170, 240, 30);
-
-        jLabel9.setBackground(new java.awt.Color(169, 75, 1));
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Login");
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel9.setOpaque(true);
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel10.setBackground(new java.awt.Color(169, 75, 1));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Login");
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel10.setOpaque(true);
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+                jLabel10MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel10MouseExited(evt);
             }
         });
-        jPanel3.add(jLabel9);
-        jLabel9.setBounds(110, 320, 150, 35);
+        jPanel3.add(jLabel10);
+        jLabel10.setBounds(120, 270, 150, 35);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.jpg"))); // NOI18N
@@ -154,9 +161,7 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -170,13 +175,74 @@ public class Login extends javax.swing.JFrame {
         else
         txtPass.setEchoChar('\u25CF');
     }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+    public void loginAction(){
+     if(txtUserName.getText().equals("") || txtPass.getPassword().equals("")){
+            JOptionPane.showMessageDialog(null, "Some fields are empty");
+        } else{
+            Connection con = DBConnect.connect();
+            try {
+                // Check the username and passwords
+                DBConnect.ps = con.prepareStatement("SELECT * FROM `user` WHERE `username` = ? AND `password` = ?");
+                DBConnect.ps.setString(1, txtUserName.getText());
+                DBConnect.ps.setString(2, String.valueOf(txtPass.getPassword()));
+                DBConnect.rs = DBConnect.ps.executeQuery();
+                if (DBConnect.rs.next()) {
+                    // Fetch values
+                    user = DBConnect.rs.getString("username");
+                    type = DBConnect.rs.getString("type");
+                      uid = DBConnect.rs.getString("id");
+                    switch (type) {
+                        case "Administrator":
+                            {
+                                // Open the admin module
+                                Menu m = new Menu(user,"Admin",uid);
+                                con.close();
+                                m.setVisible(true);
+                                this.dispose();
+                                break;
+                            }
+                        case "User":
+                            {
+                                Menu m = new Menu(user,"User",uid);
+                                con.close();
+                                m.setVisible(true);
+                                this.dispose();
+                                break;
+                            }
+                        default:
+                            JOptionPane.showMessageDialog(null, "Login Failed! Wrong Credentials");
+                            break;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Login Failed! Wrong Credentials");
+                }
+            } catch (HeadlessException | SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Could not log in to the system. Make sure the server is on");
+            }
+        }
+    }
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-        Menu m = new Menu(user);
-        m.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel9MouseClicked
+       loginAction();
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
+        // TODO add your handling code here:
+         jLabel10.setBackground(new Color(255,164,19));
+    }//GEN-LAST:event_jLabel10MouseEntered
+
+    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
+        // TODO add your handling code here:
+       jLabel10.setBackground(new Color(170, 76, 2));
+    }//GEN-LAST:event_jLabel10MouseExited
+
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+      loginAction();
+    }
+    }//GEN-LAST:event_txtPassKeyPressed
 
     /**
      * @param args the command line arguments
@@ -205,24 +271,28 @@ public class Login extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+try { 
+    UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+} catch (Exception ex) { 
+    ex.printStackTrace(); 
+}
+  
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cboType;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
