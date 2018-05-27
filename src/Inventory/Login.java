@@ -19,7 +19,7 @@ import javax.swing.UIManager;
 
 /**
  *
- * @author Ruth
+ * @author Badyo
  */
 public class Login extends javax.swing.JFrame {
     static String user;
@@ -195,6 +195,12 @@ public class Login extends javax.swing.JFrame {
                         case "Administrator":
                             {
                                 // Open the admin module
+                                //insert to logs
+                                String sql = "INSERT INTO `logs`(`userid`, `action` ) VALUES (?,?)";
+            DBConnect.ps = con.prepareStatement(sql);
+             DBConnect.ps.setInt(1, Integer.parseInt(uid));
+              DBConnect.ps.setString(2, "Logged In");
+            DBConnect.ps.execute();
                                 Menu m = new Menu(user,"Admin",uid);
                                 con.close();
                                 m.setVisible(true);
@@ -203,6 +209,11 @@ public class Login extends javax.swing.JFrame {
                             }
                         case "User":
                             {
+                                  String sql = "INSERT INTO `logs`(`userid`, `action` ) VALUES (?,?)";
+            DBConnect.ps = con.prepareStatement(sql);
+             DBConnect.ps.setInt(1, Integer.parseInt(uid));
+              DBConnect.ps.setString(2, "Logged In");
+            DBConnect.ps.execute();
                                 Menu m = new Menu(user,"User",uid);
                                 con.close();
                                 m.setVisible(true);

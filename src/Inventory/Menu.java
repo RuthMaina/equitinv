@@ -13,8 +13,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,18 +24,15 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
    import javax.swing.table.DefaultTableModel;
-import static jdk.nashorn.internal.objects.NativeRegExp.source;
 import net.sf.jasperreports.engine.JRDataSource;
    import net.sf.jasperreports.engine.JRException;
-   import net.sf.jasperreports.engine.JasperCompileManager;
    import net.sf.jasperreports.engine.JasperFillManager;
    import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
    import net.sf.jasperreports.engine.data.JRTableModelDataSource;
    import net.sf.jasperreports.view.JasperViewer;
 /**
  *
- * @author Ruth
+ * @author Badyo
  */
 public class Menu extends javax.swing.JFrame {
     PlaceHolder holder;
@@ -44,7 +41,6 @@ public class Menu extends javax.swing.JFrame {
     static String permuid = "";
     /**
      * Creates new form Menu
-     * @param user
      */
     public Menu(){}
     
@@ -57,6 +53,7 @@ public class Menu extends javax.swing.JFrame {
         ChangeColor(Menu, btnStock);
            dateItemAdd.setDate(date);
              dateItemRemove.setDate(date);
+             loadCurrentEmail();
         holder = new PlaceHolder(txtSearchItems, "Search by item name");
            holder = new PlaceHolder(ItemNameAdd, "Click the search icon to fill");
            holder = new PlaceHolder(NameRemove, "Click the search icon to fill");
@@ -247,31 +244,36 @@ for (Component C : panel.getComponents())
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        txtFrom1 = new javax.swing.JTextField();
-        txtTo1 = new javax.swing.JTextField();
-        txtPass1 = new javax.swing.JPasswordField();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        txtPort = new javax.swing.JTextField();
-        txtSite = new javax.swing.JTextField();
-        btnSave5 = new javax.swing.JLabel();
+        WebFrom = new javax.swing.JTextField();
+        WebTo = new javax.swing.JTextField();
+        WebPort = new javax.swing.JTextField();
+        SaveWeb = new javax.swing.JLabel();
+        WebPass = new javax.swing.JTextField();
+        Website = new javax.swing.JTextField();
+        ClearWeb = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtFrom = new javax.swing.JTextField();
-        txtTo = new javax.swing.JTextField();
-        txtPass = new javax.swing.JPasswordField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        btnSave4 = new javax.swing.JLabel();
+        GFrom = new javax.swing.JTextField();
+        GTo = new javax.swing.JTextField();
+        ClearGmail = new javax.swing.JLabel();
+        GPass = new javax.swing.JTextField();
+        SaveGmail = new javax.swing.JLabel();
         ComboEmail = new javax.swing.JComboBox<>();
+        jPanel18 = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        areaEmail = new javax.swing.JTextArea();
+        SavePreference = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        txtFrom2 = new javax.swing.JTextField();
+        currentPass = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        txtPass2 = new javax.swing.JPasswordField();
-        txtTo2 = new javax.swing.JTextField();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        Confirmnew = new javax.swing.JPasswordField();
+        Newpass = new javax.swing.JTextField();
+        viewconfirm = new javax.swing.JCheckBox();
         btnSave3 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -1933,36 +1935,48 @@ for (Component C : panel.getComponents())
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("SMTP/ Site");
 
-        txtFrom1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        WebFrom.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtTo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        WebTo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtPass1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtPass1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPass1ActionPerformed(evt);
+        WebPort.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        SaveWeb.setBackground(new java.awt.Color(255, 164, 19));
+        SaveWeb.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        SaveWeb.setForeground(new java.awt.Color(255, 255, 255));
+        SaveWeb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SaveWeb.setText("Save");
+        SaveWeb.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SaveWeb.setOpaque(true);
+        SaveWeb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveWebMouseClicked(evt);
             }
         });
 
-        jCheckBox2.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setBorder(null);
-        jCheckBox2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Eye_20px.png"))); // NOI18N
+        WebPass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtPort.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Website.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtSite.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtSite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSiteActionPerformed(evt);
+        ClearWeb.setBackground(new java.awt.Color(255, 164, 19));
+        ClearWeb.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ClearWeb.setForeground(new java.awt.Color(255, 255, 255));
+        ClearWeb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ClearWeb.setText("Clear");
+        ClearWeb.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ClearWeb.setOpaque(true);
+        ClearWeb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClearWebMouseClicked(evt);
             }
         });
 
-        btnSave5.setBackground(new java.awt.Color(255, 164, 19));
-        btnSave5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnSave5.setForeground(new java.awt.Color(255, 255, 255));
-        btnSave5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSave5.setText("Save");
-        btnSave5.setOpaque(true);
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1973,9 +1987,8 @@ for (Component C : panel.getComponents())
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel25)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtSite)
-                        .addGap(17, 17, 17))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Website))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -1984,22 +1997,21 @@ for (Component C : panel.getComponents())
                             .addComponent(jLabel14))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTo1)
-                            .addComponent(txtFrom1)
+                            .addComponent(WebTo)
+                            .addComponent(WebFrom)
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel11Layout.createSequentialGroup()
-                                        .addComponent(txtPass1)
-                                        .addGap(26, 26, 26))
-                                    .addComponent(txtPort, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(13, 13, 13)))
-                .addGap(2, 2, 2))
+                                .addComponent(WebPort))
+                            .addComponent(WebPass))))
+                .addGap(15, 15, 15))
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(btnSave5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGap(78, 78, 78)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(SaveWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(ClearWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2007,33 +2019,32 @@ for (Component C : panel.getComponents())
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(11, 11, 11)))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(WebPass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(WebPort, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(txtFrom1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(WebFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtTo1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(WebTo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSite, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Website, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnSave5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SaveWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClearWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jButton1)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
@@ -2048,55 +2059,62 @@ for (Component C : panel.getComponents())
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Password");
 
-        txtFrom.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        GFrom.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtTo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        GTo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtPass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassActionPerformed(evt);
+        ClearGmail.setBackground(new java.awt.Color(255, 164, 19));
+        ClearGmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ClearGmail.setForeground(new java.awt.Color(255, 255, 255));
+        ClearGmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ClearGmail.setText("Clear");
+        ClearGmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ClearGmail.setOpaque(true);
+        ClearGmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClearGmailMouseClicked(evt);
             }
         });
 
-        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setBorder(null);
-        jCheckBox1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Eye_20px.png"))); // NOI18N
+        GPass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        btnSave4.setBackground(new java.awt.Color(255, 164, 19));
-        btnSave4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnSave4.setForeground(new java.awt.Color(255, 255, 255));
-        btnSave4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSave4.setText("Save");
-        btnSave4.setOpaque(true);
+        SaveGmail.setBackground(new java.awt.Color(255, 164, 19));
+        SaveGmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        SaveGmail.setForeground(new java.awt.Color(255, 255, 255));
+        SaveGmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SaveGmail.setText("Save");
+        SaveGmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SaveGmail.setOpaque(true);
+        SaveGmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveGmailMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPass)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addComponent(SaveGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ClearGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel11))
-                        .addGap(35, 35, 35)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
+                        .addGap(9, 9, 9)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTo)
-                            .addComponent(txtFrom))
-                        .addGap(3, 3, 3)))
-                .addGap(11, 11, 11))
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(btnSave4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                            .addComponent(GTo, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(GFrom)
+                            .addComponent(GPass))))
+                .addGap(14, 14, 14))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2104,23 +2122,61 @@ for (Component C : panel.getComponents())
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(GFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(btnSave4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GTo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GPass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClearGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SaveGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ComboEmail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GMAIL", "WEBSITE" }));
+        ComboEmail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GMAIL", "WEB" }));
+
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Current configuration"));
+
+        areaEmail.setColumns(20);
+        areaEmail.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        areaEmail.setRows(5);
+        areaEmail.setText("\n");
+        jScrollPane11.setViewportView(areaEmail);
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane11)
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        SavePreference.setBackground(new java.awt.Color(255, 164, 19));
+        SavePreference.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        SavePreference.setForeground(new java.awt.Color(255, 255, 255));
+        SavePreference.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SavePreference.setText("Select");
+        SavePreference.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SavePreference.setOpaque(true);
+        SavePreference.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SavePreferenceMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -2130,35 +2186,44 @@ for (Component C : panel.getComponents())
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ComboEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SavePreference, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ComboEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SavePreference, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(23, 23, 23))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane3.addTab("Email Configuration", jPanel2);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtFrom2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        currentPass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Current Password");
@@ -2169,24 +2234,30 @@ for (Component C : panel.getComponents())
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel30.setText("Confirm Password");
 
-        txtPass2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtPass2.addActionListener(new java.awt.event.ActionListener() {
+        Confirmnew.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Confirmnew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPass2ActionPerformed(evt);
+                ConfirmnewActionPerformed(evt);
             }
         });
 
-        txtTo2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Newpass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jCheckBox3.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox3.setBorder(null);
-        jCheckBox3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Eye_20px.png"))); // NOI18N
+        viewconfirm.setBackground(new java.awt.Color(255, 255, 255));
+        viewconfirm.setBorder(null);
+        viewconfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Eye_20px.png"))); // NOI18N
+        viewconfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewconfirmActionPerformed(evt);
+            }
+        });
 
         btnSave3.setBackground(new java.awt.Color(255, 164, 19));
         btnSave3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSave3.setForeground(new java.awt.Color(255, 255, 255));
         btnSave3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnSave3.setText("Update");
+        btnSave3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSave3.setOpaque(true);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -2202,9 +2273,9 @@ for (Component C : panel.getComponents())
                             .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(9, 9, 9)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFrom2)
+                            .addComponent(currentPass)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(txtTo2)
+                                .addComponent(Newpass)
                                 .addGap(3, 3, 3)))
                         .addGap(23, 23, 23))
                     .addGroup(jPanel9Layout.createSequentialGroup()
@@ -2215,9 +2286,9 @@ for (Component C : panel.getComponents())
                                 .addComponent(btnSave3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 211, Short.MAX_VALUE))
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(txtPass2)
+                                .addComponent(Confirmnew)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(viewconfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(168, 168, 168))
         );
         jPanel9Layout.setVerticalGroup(
@@ -2226,17 +2297,17 @@ for (Component C : panel.getComponents())
                 .addGap(66, 66, 66)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFrom2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(currentPass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTo2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Newpass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPass2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Confirmnew, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(viewconfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(btnSave3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(196, Short.MAX_VALUE))
@@ -2435,21 +2506,9 @@ for (Component C : panel.getComponents())
         ChangeColor(Menu, btnSettings);
     }//GEN-LAST:event_btnSettingsMouseClicked
 
-    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
+    private void ConfirmnewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmnewActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassActionPerformed
-
-    private void txtPass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPass1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPass1ActionPerformed
-
-    private void txtSiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSiteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSiteActionPerformed
-
-    private void txtPass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPass2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPass2ActionPerformed
+    }//GEN-LAST:event_ConfirmnewActionPerformed
 
     private void txtSearchStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchStockActionPerformed
         // TODO add your handling code here:
@@ -2995,6 +3054,99 @@ if(tableModel.getRowCount() > 0){
              SaveNewUser.setBackground(new Color(255,164,19));
     }//GEN-LAST:event_SaveNewUser1ActionPerformed
 
+    private void viewconfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewconfirmActionPerformed
+        // TODO add your handling code here:
+ if (viewconfirm.isSelected())
+        Confirmnew.setEchoChar((char)0);
+        else
+        Confirmnew.setEchoChar('\u25CF');
+    }//GEN-LAST:event_viewconfirmActionPerformed
+
+    private void ClearGmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearGmailMouseClicked
+        // TODO add your handling code here:
+       GFrom.setText("");
+       GTo.setText("");
+       GPass.setText("");
+    }//GEN-LAST:event_ClearGmailMouseClicked
+
+    private void SavePreferenceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SavePreferenceMouseClicked
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Connection con = DBConnect.connect();
+            String query = "UPDATE`emailconfig` SET pref = ?";
+               DBConnect.ps = con.prepareStatement(query);
+                DBConnect.ps.setString(1, ComboEmail.getSelectedItem().toString());
+                DBConnect.ps.executeUpdate();
+                con.close();
+            loadCurrentEmail();
+            JOptionPane.showMessageDialog(null, "Success");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_SavePreferenceMouseClicked
+
+    private void SaveGmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveGmailMouseClicked
+        // TODO add your handling code here:
+        if(GFrom.getText() == null ? GTo.getText() != null : !GFrom.getText().equals(GTo.getText())){
+           try {
+            // TODO add your handling code here:
+            Connection con = DBConnect.connect();
+            String query = "UPDATE`emailconfig` SET `fromid` = ?, `toid` = ?, `password` = ? where type = 'GMAIL'";
+               DBConnect.ps = con.prepareStatement(query);
+                DBConnect.ps.setString(1, GFrom.getText());
+               DBConnect.ps.setString     (2,GTo.getText());
+                DBConnect.ps.setString     (3,GPass.getText());
+                DBConnect.ps.executeUpdate();
+                con.close();
+            loadCurrentEmail();
+              JOptionPane.showMessageDialog(null, "Success");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        else
+          JOptionPane.showMessageDialog(null, "FAILURE: EMPTY FIELDS OR FROM AND TO ARE EQUAL");   
+    }//GEN-LAST:event_SaveGmailMouseClicked
+
+    private void SaveWebMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveWebMouseClicked
+      if(WebFrom.getText() == null ? WebTo.getText() != null : !WebFrom.getText().equals(WebTo.getText())){
+        try {
+            // TODO add your handling code here:
+            Connection con = DBConnect.connect();
+            String query = "UPDATE`emailconfig` SET `fromid` = ?, `toid` = ?, `password` = ?,port=?,smtp=? where type = 'WEB'";
+               DBConnect.ps = con.prepareStatement(query);
+                DBConnect.ps.setString(1, WebFrom.getText());
+               DBConnect.ps.setString     (2,WebTo.getText());
+                DBConnect.ps.setString     (3,WebPass.getText());
+                DBConnect.ps.setString     (4,WebPort.getText());
+                DBConnect.ps.setString     (5,Website.getText());
+                DBConnect.ps.executeUpdate();
+                con.close();
+            loadCurrentEmail();
+              JOptionPane.showMessageDialog(null, "Success");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+      else
+            JOptionPane.showMessageDialog(null, "FAILURE: EMPTY FIELDS OR FROM AND TO ARE EQUAL");    
+    }//GEN-LAST:event_SaveWebMouseClicked
+
+    private void ClearWebMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearWebMouseClicked
+        // TODO add your handling code here:
+        WebFrom.setText("");
+        WebPass.setText("");
+        WebPort.setText("");
+        WebTo.setText("");
+        Website.setText("");
+    }//GEN-LAST:event_ClearWebMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        sendEmail();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3030,7 +3182,105 @@ if(tableModel.getRowCount() > 0){
             }
         });
     }
-                                         
+    
+    public final void loadCurrentEmail(){
+         try{
+             Connection con = DBConnect.connect();
+            DBConnect.ps = con.prepareStatement("SELECT * FROM emailconfig WHERE type = pref");
+             DBConnect.rs =  DBConnect.ps.executeQuery();
+                if( DBConnect.rs.next()){
+                    areaEmail.setText("");
+                    if("GMAIL".equals(DBConnect.rs.getString(8))){
+             
+                  areaEmail.append("Current Email Settings: \n");
+                  areaEmail.append("Active type: " + DBConnect.rs.getString(8) + "\n" );
+                   areaEmail.append("Email From: " + DBConnect.rs.getString(3) + "\n" );
+                    areaEmail.append("Email To: " + DBConnect.rs.getString(4) + "\n" );
+                     areaEmail.append("Email password: " + DBConnect.rs.getString(5) + "\n" );
+                          areaEmail.append("For Gmail you need to turn on the 'less secure app' setting\n" +
+"and also turn off 2 step authentication in your Gmail Account");
+                    }
+                    else
+                    {
+                       
+                  areaEmail.append("Current Email Settings: \n");
+                  areaEmail.append("Active type: " + DBConnect.rs.getString(8) + "\n" );
+                   areaEmail.append("Email From: " + DBConnect.rs.getString(3) + "\n" );
+                    areaEmail.append("Email To: " + DBConnect.rs.getString(4) + "\n" );
+                     areaEmail.append("Email password: " + DBConnect.rs.getString(5) + "\n" );
+                      areaEmail.append("Email port: " + DBConnect.rs.getString(6) + "\n" );
+                       areaEmail.append("Email website: " + DBConnect.rs.getString(7) + "\n" );
+                        areaEmail.append("For Gmail you need to turn on the 'less secure app' setting\n" +
+"and also turn off 2 step authentication in your Gmail Account");
+                    }
+            }
+        con.close();
+       } 
+      catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, ex);
+           
+        }
+    }
+    public void ConfirmExistingPass(){
+        try{
+             Connection con = DBConnect.connect();
+            DBConnect.ps = con.prepareStatement("SELECT * FROM user WHERE id = ? and password = ?");
+             DBConnect.ps.setInt(1, Integer.parseInt(permuid));
+             DBConnect.ps.setString(2,currentPass.getText());
+             DBConnect.rs =  DBConnect.ps.executeQuery();
+            if(currentPass.getText().length()>0){
+                if( DBConnect.rs.next()){
+                    ChangePass();
+                                  }
+                else{
+                JOptionPane.showMessageDialog(null,"CURRENT PASS IS INCORRECT!");
+                }}
+            else
+            {
+                JOptionPane.showMessageDialog(null,"CURRENT PASS IS EMPTY! PLEASE FILL IN THE DETAILS");
+            }
+        con.close();
+       } 
+      catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, ex);
+           
+        }
+     }
+       
+    void ChangePass()
+{
+     try{
+                   Connection con = DBConnect.connect();
+            String query = "update user set password = ? where id = ?";
+      DBConnect.ps = con.prepareStatement(query);
+      
+      if(Confirmnew.getText().length()>0 || Newpass.getText().length()>0)
+      {
+      if(Newpass.getText() == null ? Confirmnew.getText() == null : Newpass.getText().equals(Confirmnew.getText()))
+      {
+           DBConnect.ps.setString   (1,Confirmnew.getText());
+         DBConnect.ps.setInt(2, Integer.parseInt(permuid));
+         
+        DBConnect.ps.executeUpdate();
+      JOptionPane.showMessageDialog(null,"PASSWORD SUCCESFULLY CHANGED");
+      }
+      else
+      {
+          JOptionPane.showMessageDialog(null,"PASSWORDS DO NOT MATCH");
+      }
+      }
+      else
+      {
+          JOptionPane.showMessageDialog(null,"EMPTY FIELDS DETECTED! PLEASE FILL IN THE DETAILS");
+      }
+       con.close();
+            }   
+    
+      catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, ex);
+            
+        }
+}
 
     public final void  paneltraverse(Container parent, JPanel F)
 {
@@ -3086,16 +3336,52 @@ Component myCA[] = parent.getComponents();
         JOptionPane.showMessageDialog(this,e);
     }
 } 
+    ArrayList<String> lowname = new ArrayList<>();
+     ArrayList<String> lowqty = new ArrayList<>();
+     static String prefEmail = "";
+ public void sendEmail(){
+     //get items that are currently low
+     //save them to arraylist
+     //get preffered email
+     //call class based on preferred email with details
+           try{
+              lowname.removeAll(lowname);
+              lowqty.removeAll(lowqty);
+             Connection con = DBConnect.connect();
+            DBConnect.ps = con.prepareStatement("SELECT Iname,quantity FROM items WHERE quantity <= low");
+             DBConnect.rs =  DBConnect.ps.executeQuery();
+                while( DBConnect.rs.next()){
+                   lowname.add(DBConnect.rs.getString(1));
+                    lowqty.add(DBConnect.rs.getString(2));                 
+            }
+                 DBConnect.ps = con.prepareStatement("SELECT pref FROM emailconfig");
+             DBConnect.rs =  DBConnect.ps.executeQuery();
+                if( DBConnect.rs.next()){
+                    prefEmail = DBConnect.rs.getString(1);
+                }
+        con.close();
+       } 
+      catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, ex);    
+        }
+             JOptionPane.showMessageDialog(null, prefEmail);
+ }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Add;
     private javax.swing.ButtonGroup Address;
     private javax.swing.JPanel Body;
+    private javax.swing.JLabel ClearGmail;
+    private javax.swing.JLabel ClearWeb;
     private javax.swing.JComboBox<String> ComboEmail;
     private javax.swing.JComboBox<String> ComboRemove;
     private javax.swing.JComboBox<String> ComboType;
+    private javax.swing.JPasswordField Confirmnew;
     private javax.swing.JButton DeleteNewUser;
     private javax.swing.JDialog DialogSearchItemAdd;
     private javax.swing.JDialog DialogSearchItemRemove;
+    private javax.swing.JTextField GFrom;
+    private javax.swing.JTextField GPass;
+    private javax.swing.JTextField GTo;
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Inventory;
     private javax.swing.JTextField ItemNameAdd;
@@ -3106,14 +3392,24 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JPanel Manage;
     private javax.swing.JPanel Menu;
     private javax.swing.JTextField NameRemove;
+    private javax.swing.JTextField Newpass;
     private javax.swing.JPanel Remove;
     private javax.swing.JPanel Reports;
+    private javax.swing.JLabel SaveGmail;
     private javax.swing.JButton SaveNewUser;
     private javax.swing.JButton SaveNewUser1;
+    private javax.swing.JLabel SavePreference;
+    private javax.swing.JLabel SaveWeb;
     private javax.swing.JPanel Settings;
     private javax.swing.ButtonGroup Status;
     private javax.swing.JPanel Stock;
     private javax.swing.JTextField UserNamenew;
+    private javax.swing.JTextField WebFrom;
+    private javax.swing.JTextField WebPass;
+    private javax.swing.JTextField WebPort;
+    private javax.swing.JTextField WebTo;
+    private javax.swing.JTextField Website;
+    private javax.swing.JTextArea areaEmail;
     private javax.swing.JButton btnCItem;
     private javax.swing.JButton btnDItem;
     private javax.swing.JLabel btnInventory;
@@ -3130,19 +3426,16 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JButton btnSItemAdd;
     private javax.swing.JButton btnSItemRemove;
     private javax.swing.JLabel btnSave3;
-    private javax.swing.JLabel btnSave4;
-    private javax.swing.JLabel btnSave5;
     private javax.swing.JLabel btnSettings;
     private javax.swing.JLabel btnSettings1;
     private javax.swing.JLabel btnStock;
     private javax.swing.JButton btnStockRemove;
     private javax.swing.JButton btnStockS;
     private javax.swing.JButton btnUItem;
+    private javax.swing.JTextField currentPass;
     private com.toedter.calendar.JDateChooser dateItemAdd;
     private com.toedter.calendar.JDateChooser dateItemRemove;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
@@ -3212,6 +3505,7 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3222,6 +3516,7 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3245,15 +3540,8 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JTable tblSpoilt;
     private javax.swing.JTable tblStock;
     private javax.swing.JTextField txtCountItem;
-    private javax.swing.JTextField txtFrom;
-    private javax.swing.JTextField txtFrom1;
-    private javax.swing.JTextField txtFrom2;
     private javax.swing.JTextField txtLowItem;
     private javax.swing.JTextField txtNameItem;
-    private javax.swing.JPasswordField txtPass;
-    private javax.swing.JPasswordField txtPass1;
-    private javax.swing.JPasswordField txtPass2;
-    private javax.swing.JTextField txtPort;
     private javax.swing.JTextField txtQty3;
     private javax.swing.JTextField txtQty4;
     private javax.swing.JTextField txtQty5;
@@ -3267,10 +3555,7 @@ Component myCA[] = parent.getComponents();
     private javax.swing.JTextField txtSearchItemRemove;
     private javax.swing.JTextField txtSearchItems;
     private javax.swing.JTextField txtSearchStock;
-    private javax.swing.JTextField txtSite;
-    private javax.swing.JTextField txtTo;
-    private javax.swing.JTextField txtTo1;
-    private javax.swing.JTextField txtTo2;
     private javax.swing.JTextField txtUnitItem;
+    private javax.swing.JCheckBox viewconfirm;
     // End of variables declaration//GEN-END:variables
 }
