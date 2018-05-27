@@ -85,7 +85,7 @@ public class Menu extends javax.swing.JFrame {
           setEmailThread();
     }
     
-    
+    //true
     
     
     // Color on selected menu item
