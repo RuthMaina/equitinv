@@ -9,13 +9,16 @@ package Inventory;
  *
  * @author badyo
  */
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
 
 public class EmailUtil {
 
@@ -25,8 +28,10 @@ public class EmailUtil {
 	 * @param toEmail
 	 * @param subject
 	 * @param body
+     * @param from
+     * @param FrontT
 	 */
-	public static void sendEmail(Session session, String toEmail, String subject, String body){
+	public static void sendEmail(Session session, String toEmail, String subject, String body,String from,String FrontT){
 		try
 	    {
 	      MimeMessage msg = new MimeMessage(session);
@@ -35,9 +40,9 @@ public class EmailUtil {
 	      msg.addHeader("format", "flowed");
 	      msg.addHeader("Content-Transfer-Encoding", "8bit");
 
-	      msg.setFrom(new InternetAddress("badyokita@gmail.com", "Subject here"));
+	      msg.setFrom(new InternetAddress(from, FrontT));
 
-	      msg.setReplyTo(InternetAddress.parse("badyokita@gmail.com", false));
+	      msg.setReplyTo(InternetAddress.parse(from, false));
 
 	      msg.setSubject(subject, "UTF-8");
 
@@ -51,8 +56,8 @@ public class EmailUtil {
 
 	      System.out.println("EMail Sent Successfully!!");
 	    }
-	    catch (Exception e) {
-	      e.printStackTrace();
+	    catch (UnsupportedEncodingException | MessagingException e) {
+                JOptionPane.showMessageDialog(null, "");
 	    }
 	}
 }

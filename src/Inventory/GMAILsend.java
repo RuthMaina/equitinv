@@ -15,7 +15,7 @@ import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
-public class TLSEmail {
+public class GMAILsend {
 
 	/**
 	   Outgoing Mail (SMTP) Server
@@ -28,10 +28,10 @@ public class TLSEmail {
 		
 		
 	}
-    public void sendGmail(){
-    final String fromEmail = "badyokita@gmail.com"; //requires valid gmail id
-		final String password = "hawi12345"; // correct password for gmail id
-		final String toEmail = "bady.okita@strathmore.edu"; // can be any email id 
+    public void sendGmail(String from, String to, String pass,String Front,String subject,String body){
+    final String fromEmail = from; //requires valid gmail id
+		final String password = pass; // correct password for gmail id
+		final String toEmail = to; // can be any email id 
 		
 		System.out.println("TLSEmail Start");
 		Properties props = new Properties();
@@ -51,7 +51,7 @@ public class TLSEmail {
 		};
 		Session session = Session.getInstance(props, auth);
 		
-		EmailUtil.sendEmail(session, toEmail,"TLSEmail Testing Subject", "TLSEmail Testing Body");
+		EmailUtil.sendEmail(session, toEmail,subject, body,from,Front);
     }
 	
 

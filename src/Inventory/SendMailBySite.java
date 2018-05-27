@@ -17,16 +17,15 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 import java.util.Properties;  
+import javax.swing.JOptionPane;
   
-public class SendMailBySite {  
- public static void main(String[] args) {  
-  
-  String host="mail.lifestyleelectronics.co.ke";  
-  final String user="info@lifestyleelectronics.co.ke";//change accordingly  
-  final String password="TaK2s15fw8";//change accordingly  
-    
-  String to="bady.okita@strathmore.edu";//change accordingly  
-  
+public class SendMailBySite { 
+    public void SendSite(String from, String to, String pass,String subject,String body,String host)
+    {
+      
+  final String user=from;//change accordingly  
+  final String password=pass;//change accordingly  
+   //TaK2s15fw8 
    //Get the session object  
    Properties props = new Properties();  
    props.put("mail.smtp.host",host);  
@@ -44,15 +43,20 @@ public class SendMailBySite {
     try {  
      MimeMessage message = new MimeMessage(session);  
      message.setFrom(new InternetAddress(user));  
-     message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));  
-     message.setSubject("javatpoint");  
-     message.setText("This is simple program of sending email using JavaMail API");  
+     message.addRecipient(Message.RecipientType.TO,new InternetAddress(to)); 
+     message.setSubject(subject);  
+     message.setText(body);  
        
     //send the message  
      Transport.send(message);  
   
      System.out.println("message sent successfully...");  
    
-     } catch (MessagingException e) {e.printStackTrace();}  
- }  
+     } catch (MessagingException e) {
+        JOptionPane.showMessageDialog(null, e);
+     }  
+    }
+ public static void main(String[] args) {  
+  
+ }
 }  
