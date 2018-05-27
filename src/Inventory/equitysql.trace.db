@@ -1,0 +1,888 @@
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                      
+                  
+                              
+  
+                  
+                                            
+                                  
+                     
+
+SET SQL_MODE[*] = ""NO_AUTO_VALUE_ON_ZERO"" "; expected "@, AUTOCOMMIT, MVCC, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCHEMA, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+-- phpMyAdmin SQL Dump
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 27, 2018 at 07:23 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO" [42001-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SET TIME_ZONE[*] = ""+00:00"" "; expected "@, AUTOCOMMIT, MVCC, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCHEMA, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+SET time_zone = "+00:00" [42001-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "  
+                         
+  
+
+                                                           
+
+  
+                                          
+  
+
+CREATE TABLE ""EMAILCONFIG"" (
+  ""ID"" INT(11) NOT NULL,
+  ""TYPE"" VARCHAR(200) NOT NULL,
+  ""FROMID"" VARCHAR(200) NOT NULL,
+  ""TOID"" VARCHAR(200) NOT NULL,
+  ""PASSWORD"" VARCHAR(200) NOT NULL,
+  ""PORT"" VARCHAR(200) DEFAULT NULL,
+  ""SMTP"" VARCHAR(200) DEFAULT NULL,
+  ""PREF"" VARCHAR(200) NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1[*] "; expected "UTF8, UTF8MB4"; SQL statement:
+--
+-- Database: `einventory`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emailconfig`
+--
+
+CREATE TABLE `emailconfig` (
+  `id` int(11) NOT NULL,
+  `Type` varchar(200) NOT NULL,
+  `fromid` varchar(200) NOT NULL,
+  `toid` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `port` varchar(200) DEFAULT NULL,
+  `smtp` varchar(200) DEFAULT NULL,
+  `pref` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 [42001-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "EMAILCONFIG" not found; SQL statement:
+--
+-- Dumping data for table `emailconfig`
+--
+
+INSERT INTO `emailconfig` (`id`, `Type`, `fromid`, `toid`, `password`, `port`, `smtp`, `pref`) VALUES
+(1, 'GMAIL', 'badyokita@gmail.com', 'Bady.Okita@strathmore.edu', 'hawi12345', NULL, NULL, 'GMAIL'),
+(2, 'WEB', 'info@lifestyleelectronics.co.ke', 'Bady.Okita@strathmore.edu', 'TaK2s15fw8', '0000', 'www.life', 'GMAIL') [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                                                           
+
+  
+                                    
+  
+
+CREATE TABLE ""ITEMS"" (
+  ""ID"" INT(11) NOT NULL,
+  ""INAME"" VARCHAR(300) NOT NULL,
+  ""QUANTITY"" INT(11) NOT NULL,
+  ""UNIT"" VARCHAR(300) NOT NULL,
+  ""PERUNIT"" INT(11) NOT NULL,
+  ""LOW"" INT(11) NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1[*] ROW_FORMAT=COMPACT "; expected "UTF8, UTF8MB4"; SQL statement:
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL,
+  `Iname` varchar(300) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `unit` varchar(300) NOT NULL,
+  `perunit` int(11) NOT NULL,
+  `low` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT [42001-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ITEMS" not found; SQL statement:
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `Iname`, `quantity`, `unit`, `perunit`, `low`) VALUES
+(3, 'Pencils', 50, 'Pouches', 12, 10),
+(4, 'Branches', 40, 'fold', 10, 5) [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                                                           
+
+  
+                                   
+  
+
+CREATE TABLE ""LOGS"" (
+  ""ID"" INT(11) NOT NULL,
+  ""TIME"" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ""USERID"" INT(11) NOT NULL,
+  ""ACTION"" TEXT NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1[*] "; expected "UTF8, UTF8MB4"; SQL statement:
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs`
+--
+
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `userid` int(11) NOT NULL,
+  `action` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 [42001-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "LOGS" not found; SQL statement:
+--
+-- Dumping data for table `logs`
+--
+
+INSERT INTO `logs` (`id`, `time`, `userid`, `action`) VALUES
+(1, '2018-05-26 20:46:17', 2, 'Logged In'),
+(2, '2018-05-26 21:01:06', 2, 'Logged In'),
+(3, '2018-05-26 21:01:16', 2, 'Logged In'),
+(4, '2018-05-26 21:04:03', 2, 'Logged In'),
+(5, '2018-05-26 21:04:05', 2, 'Logged Out'),
+(6, '2018-05-26 21:09:40', 2, 'Logged In'),
+(7, '2018-05-26 21:11:02', 2, 'Logged In'),
+(8, '2018-05-26 21:11:42', 2, 'Logged In'),
+(9, '2018-05-26 21:11:51', 2, 'Logged Out'),
+(10, '2018-05-26 21:11:56', 3, 'Logged In'),
+(11, '2018-05-26 21:30:55', 3, 'Logged In'),
+(12, '2018-05-26 21:32:38', 3, 'Logged In'),
+(13, '2018-05-26 21:35:04', 3, 'Logged In'),
+(14, '2018-05-26 21:35:51', 3, 'Logged In'),
+(15, '2018-05-26 21:37:11', 2, 'Logged In'),
+(16, '2018-05-26 21:38:05', 5, 'Logged In'),
+(17, '2018-05-26 21:40:32', 5, 'Logged In'),
+(18, '2018-05-26 21:42:45', 5, 'Logged In'),
+(19, '2018-05-26 21:45:37', 2, 'Logged In'),
+(20, '2018-05-27 08:14:42', 2, 'Logged In'),
+(21, '2018-05-27 10:04:04', 2, 'Logged In'),
+(22, '2018-05-27 10:10:55', 5, 'Logged In'),
+(23, '2018-05-27 10:10:57', 5, 'Logged Out'),
+(24, '2018-05-27 10:11:03', 5, 'Logged In'),
+(25, '2018-05-27 10:13:14', 3, 'Logged In'),
+(26, '2018-05-27 10:15:32', 3, 'Logged In'),
+(27, '2018-05-27 10:17:19', 3, 'Logged In'),
+(28, '2018-05-27 10:21:04', 5, 'Logged In'),
+(29, '2018-05-27 10:23:59', 5, 'Logged In'),
+(30, '2018-05-27 10:24:58', 5, 'Logged In'),
+(31, '2018-05-27 10:38:37', 2, 'Logged In'),
+(32, '2018-05-27 10:39:15', 2, 'Logged In'),
+(33, '2018-05-27 10:39:46', 2, 'Logged In'),
+(34, '2018-05-27 10:45:16', 2, 'Logged In'),
+(35, '2018-05-27 10:46:09', 2, 'Logged In'),
+(36, '2018-05-27 10:59:59', 2, 'Logged In'),
+(37, '2018-05-27 11:07:38', 5, 'Logged In'),
+(38, '2018-05-27 11:08:24', 5, 'Logged In'),
+(39, '2018-05-27 11:11:07', 2, 'Logged In'),
+(40, '2018-05-27 11:12:14', 2, 'Logged In'),
+(41, '2018-05-27 11:14:42', 2, 'Logged In'),
+(42, '2018-05-27 11:41:11', 2, 'Logged In'),
+(43, '2018-05-27 11:42:48', 2, 'Logged In'),
+(44, '2018-05-27 11:47:15', 2, 'Logged In'),
+(45, '2018-05-27 11:55:20', 2, 'Logged In'),
+(46, '2018-05-27 11:55:42', 2, 'Logged In'),
+(47, '2018-05-27 11:55:48', 2, 'Logged Out'),
+(48, '2018-05-27 12:03:12', 2, 'Logged In'),
+(49, '2018-05-27 12:18:57', 2, 'Logged In'),
+(50, '2018-05-27 12:21:32', 5, 'Logged In'),
+(51, '2018-05-27 12:24:50', 2, 'Logged In'),
+(52, '2018-05-27 12:28:23', 2, 'Logged In'),
+(53, '2018-05-27 12:36:53', 2, 'Logged In'),
+(54, '2018-05-27 12:37:39', 2, 'Logged In'),
+(55, '2018-05-27 14:00:32', 2, 'Logged In'),
+(56, '2018-05-27 14:00:58', 2, 'Logged In'),
+(57, '2018-05-27 14:01:25', 2, 'Logged In'),
+(58, '2018-05-27 14:03:13', 2, 'Logged In'),
+(59, '2018-05-27 14:13:37', 2, 'Logged In'),
+(60, '2018-05-27 14:15:56', 2, 'Logged In'),
+(61, '2018-05-27 14:30:46', 2, 'Logged In'),
+(62, '2018-05-27 14:32:24', 2, 'Logged In'),
+(63, '2018-05-27 14:34:32', 5, 'Logged In'),
+(64, '2018-05-27 14:36:53', 2, 'Logged In'),
+(65, '2018-05-27 15:18:25', 5, 'Logged In'),
+(66, '2018-05-27 15:22:50', 3, 'Logged In'),
+(67, '2018-05-27 15:23:48', 5, 'Logged In'),
+(68, '2018-05-27 15:30:24', 5, 'Logged In'),
+(69, '2018-05-27 15:31:38', 2, 'Logged In'),
+(70, '2018-05-27 15:32:34', 2, 'Logged In'),
+(71, '2018-05-27 15:33:48', 2, 'Logged In'),
+(72, '2018-05-27 15:34:22', 2, 'Logged In'),
+(73, '2018-05-27 15:36:04', 2, 'Logged In'),
+(74, '2018-05-27 15:38:07', 2, 'Logged In'),
+(75, '2018-05-27 15:42:10', 2, 'Logged In'),
+(76, '2018-05-27 15:50:22', 2, 'Logged In'),
+(77, '2018-05-27 15:50:59', 2, 'Logged In'),
+(78, '2018-05-27 15:51:14', 2, 'Logged In'),
+(79, '2018-05-27 15:51:41', 2, 'Logged In'),
+(80, '2018-05-27 15:54:23', 5, 'Logged In'),
+(81, '2018-05-27 15:56:34', 2, 'Logged In'),
+(82, '2018-05-27 16:26:32', 5, 'Logged In'),
+(83, '2018-05-27 16:26:59', 5, 'Logged In'),
+(84, '2018-05-27 16:37:12', 2, 'Logged In'),
+(85, '2018-05-27 16:37:39', 2, 'Logged In'),
+(86, '2018-05-27 16:53:39', 2, 'Logged In'),
+(87, '2018-05-27 16:54:09', 2, 'Added User brent'),
+(88, '2018-05-27 16:54:15', 2, 'Added User brody'),
+(89, '2018-05-27 16:54:21', 2, 'Added User hawi'),
+(90, '2018-05-27 16:54:56', 2, 'Deleted User brody'),
+(91, '2018-05-27 16:54:59', 2, 'Deleted User brent'),
+(92, '2018-05-27 16:59:48', 8, 'Logged In'),
+(93, '2018-05-27 17:00:36', 8, 'Logged In'),
+(94, '2018-05-27 17:05:24', 8, 'Logged In'),
+(95, '2018-05-27 17:06:37', 8, 'Logged In'),
+(96, '2018-05-27 17:06:46', 8, 'Logged Out'),
+(97, '2018-05-27 17:10:17', 8, 'Logged In'),
+(98, '2018-05-27 17:10:23', 8, 'Logged Out'),
+(99, '2018-05-27 17:10:29', 2, 'Logged In'),
+(100, '2018-05-27 17:10:56', 2, 'Logged In'),
+(101, '2018-05-27 17:11:03', 2, 'Logged Out'),
+(102, '2018-05-27 17:17:11', 2, 'Logged In'),
+(103, '2018-05-27 17:17:15', 2, 'Logged Out'),
+(104, '2018-05-27 17:17:45', 8, 'Logged In'),
+(105, '2018-05-27 17:17:48', 8, 'Logged Out'),
+(106, '2018-05-27 17:18:14', 2, 'Logged In'),
+(107, '2018-05-27 17:19:58', 2, 'Logged In'),
+(108, '2018-05-27 17:20:01', 2, 'Logged Out'),
+(109, '2018-05-27 17:21:05', 8, 'Logged In'),
+(110, '2018-05-27 17:21:27', 8, 'Logged In'),
+(111, '2018-05-27 17:21:29', 8, 'Logged Out'),
+(112, '2018-05-27 17:21:33', 2, 'Logged In'),
+(113, '2018-05-27 17:21:38', 2, 'Logged Out') [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                                                           
+
+  
+                                      
+  
+
+CREATE TABLE ""REMOVAL"" (
+  ""ID"" INT(11) NOT NULL,
+  ""REMOVEDATE"" DATE NOT NULL,
+  ""ITEMID"" INT(11) NOT NULL,
+  ""QUANTITY"" INT(11) NOT NULL,
+  ""USERID"" INT(11) NOT NULL,
+  ""STATUS"" VARCHAR(20) NOT NULL,
+  ""ISREMOVED"" TINYINT(1) NOT NULL DEFAULT '0'
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1[*] "; expected "UTF8, UTF8MB4"; SQL statement:
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `removal`
+--
+
+CREATE TABLE `removal` (
+  `id` int(11) NOT NULL,
+  `removedate` date NOT NULL,
+  `itemid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `isRemoved` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 [42001-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "REMOVAL" not found; SQL statement:
+--
+-- Dumping data for table `removal`
+--
+
+INSERT INTO `removal` (`id`, `removedate`, `itemid`, `quantity`, `userid`, `status`, `isRemoved`) VALUES
+(1, '2018-05-26', 3, 1, 2, 'Used', 1),
+(3, '2018-05-26', 4, 5, 3, 'Used', 1),
+(4, '2018-05-27', 3, 1, 2, 'Used', 1) [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                                                           
+
+  
+                                       
+  
+
+CREATE TABLE ""SHIPMENT"" (
+  ""ID"" INT(11) NOT NULL,
+  ""SHIPDATE"" DATE NOT NULL,
+  ""ITEMID"" INT(11) NOT NULL,
+  ""QUANTITY"" INT(11) NOT NULL,
+  ""USERID"" INT(11) NOT NULL,
+  ""STATUS"" TINYINT(1) NOT NULL DEFAULT '0'
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1[*] "; expected "UTF8, UTF8MB4"; SQL statement:
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shipment`
+--
+
+CREATE TABLE `shipment` (
+  `id` int(11) NOT NULL,
+  `shipdate` date NOT NULL,
+  `itemid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 [42001-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SHIPMENT" not found; SQL statement:
+--
+-- Dumping data for table `shipment`
+--
+
+INSERT INTO `shipment` (`id`, `shipdate`, `itemid`, `quantity`, `userid`, `status`) VALUES
+(9, '2018-05-26', 4, 2, 2, 1),
+(10, '2018-05-26', 3, 20, 2, 1),
+(11, '2018-05-26', 4, 15, 2, 1) [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                                                           
+
+  
+                                   
+  
+
+CREATE TABLE ""USER"" (
+  ""ID"" INT(11) NOT NULL,
+  ""TYPE"" VARCHAR(200) NOT NULL,
+  ""USERNAME"" VARCHAR(200) NOT NULL,
+  ""PASSWORD"" VARCHAR(200) NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1[*] "; expected "UTF8, UTF8MB4"; SQL statement:
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `type` varchar(200) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 [42001-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER" not found; SQL statement:
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `type`, `username`, `password`) VALUES
+(2, 'Administrator', 'bady', '1234'),
+(3, 'Administrator', 'mzee', '1234'),
+(5, 'User', 'rino', '1234'),
+(8, 'User', 'hawi', '1234') [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "EMAILCONFIG" not found; SQL statement:
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `emailconfig`
+--
+ALTER TABLE `emailconfig`
+  ADD PRIMARY KEY (`id`) [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ITEMS" not found; SQL statement:
+--
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`) [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "  
+                           
+  
+ALTER TABLE ""LOGS""
+  ADD PRIMARY KEY (""ID""),[*]
+  ADD KEY ""USERID"" (""USERID"") "; SQL statement:
+--
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`) [42000-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "  
+                              
+  
+ALTER TABLE ""REMOVAL""
+  ADD PRIMARY KEY (""ID""),[*]
+  ADD UNIQUE KEY ""ID_2"" (""ID""),
+  ADD KEY ""ITEMID"" (""ITEMID""),
+  ADD KEY ""USERID"" (""USERID""),
+  ADD KEY ""ID"" (""ID"") "; SQL statement:
+--
+-- Indexes for table `removal`
+--
+ALTER TABLE `removal`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_2` (`id`),
+  ADD KEY `itemid` (`itemid`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `id` (`id`) [42000-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "  
+                               
+  
+ALTER TABLE ""SHIPMENT""
+  ADD PRIMARY KEY (""ID""),[*]
+  ADD KEY ""ITEMID"" (""ITEMID""),
+  ADD KEY ""USERID"" (""USERID"") "; SQL statement:
+--
+-- Indexes for table `shipment`
+--
+ALTER TABLE `shipment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `itemid` (`itemid`),
+  ADD KEY `userid` (`userid`) [42000-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER" not found; SQL statement:
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`) [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "EMAILCONFIG" not found; SQL statement:
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `emailconfig`
+--
+ALTER TABLE `emailconfig`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3 [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ITEMS" not found; SQL statement:
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5 [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "LOGS" not found; SQL statement:
+--
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114 [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "REMOVAL" not found; SQL statement:
+--
+-- AUTO_INCREMENT for table `removal`
+--
+ALTER TABLE `removal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5 [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SHIPMENT" not found; SQL statement:
+--
+-- AUTO_INCREMENT for table `shipment`
+--
+ALTER TABLE `shipment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12 [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER" not found; SQL statement:
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9 [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "LOGS" not found; SQL statement:
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `logs`
+--
+ALTER TABLE `logs`
+  ADD CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON UPDATE CASCADE [42102-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "  
+                                  
+  
+ALTER TABLE ""REMOVAL""
+  ADD CONSTRAINT ""REMOVAL_IBFK_1"" FOREIGN KEY (""USERID"") REFERENCES ""USER"" (""ID"") ON UPDATE CASCADE,[*]
+  ADD CONSTRAINT ""REMOVAL_IBFK_2"" FOREIGN KEY (""ITEMID"") REFERENCES ""ITEMS"" (""ID"") ON UPDATE CASCADE "; SQL statement:
+--
+-- Constraints for table `removal`
+--
+ALTER TABLE `removal`
+  ADD CONSTRAINT `removal_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `removal_ibfk_2` FOREIGN KEY (`itemid`) REFERENCES `items` (`id`) ON UPDATE CASCADE [42000-196]
+2018-05-27 20:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "  
+                                   
+  
+ALTER TABLE ""SHIPMENT""
+  ADD CONSTRAINT ""SHIPMENT_IBFK_1"" FOREIGN KEY (""ITEMID"") REFERENCES ""ITEMS"" (""ID"") ON UPDATE CASCADE,[*]
+  ADD CONSTRAINT ""SHIPMENT_IBFK_2"" FOREIGN KEY (""USERID"") REFERENCES ""USER"" (""ID"") ON UPDATE CASCADE "; SQL statement:
+--
+-- Constraints for table `shipment`
+--
+ALTER TABLE `shipment`
+  ADD CONSTRAINT `shipment_ibfk_1` FOREIGN KEY (`itemid`) REFERENCES `items` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `shipment_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON UPDATE CASCADE [42000-196]
+2018-05-27 20:43:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ""EMAILCONFIG"" (
+  ""ID"" INT(11) NOT NULL,
+  ""TYPE"" VARCHAR(200) NOT NULL,
+  ""FROMID"" VARCHAR(200) NOT NULL,
+  ""TOID"" VARCHAR(200) NOT NULL,
+  ""PASSWORD"" VARCHAR(200) NOT NULL,
+  ""PORT"" VARCHAR(200) DEFAULT NULL,
+  ""SMTP"" VARCHAR(200) DEFAULT NULL,
+  ""PREF"" VARCHAR(200) NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1[*] "; expected "UTF8, UTF8MB4"; SQL statement:
+CREATE TABLE `emailconfig` (
+  `id` int(11) NOT NULL,
+  `Type` varchar(200) NOT NULL,
+  `fromid` varchar(200) NOT NULL,
+  `toid` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `port` varchar(200) DEFAULT NULL,
+  `smtp` varchar(200) DEFAULT NULL,
+  `pref` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 [42001-196]
+2018-05-27 20:47:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ""SHIPMENT"" (
+  ""ID"" INT(11) NOT NULL,
+  ""SHIPDATE"" DATE NOT NULL,
+  ""ITEMID"" INT(11) NOT NULL,
+  ""QUANTITY"" INT(11) NOT NULL,
+  ""USERID"" INT(11) NOT NULL,
+  ""STATUS"" TINYINT(1) NOT NULL DEFAULT '0' [*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE `shipment` (
+  `id` int(11) NOT NULL,
+  `shipdate` date NOT NULL,
+  `itemid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0' [42001-196]
+2018-05-27 20:49:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE ""LOGS""
+  ADD PRIMARY KEY (""ID""),[*]
+  ADD KEY ""USERID"" (""USERID"") "; SQL statement:
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`) [42000-196]
+2018-05-27 20:49:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE ""LOGS""
+  ADD PRIMARY KEY (""ID""),[*]
+  ADD KEY ""USERID"" (""USERID"") "; SQL statement:
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`) [42000-196]
+2018-05-27 20:50:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE ""LOGS""
+  ADD PRIMARY KEY (""ID""),[*]
+  ADD KEY ""USERID"" (""USERID"") "; SQL statement:
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`) [42000-196]
+2018-05-27 21:08:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE ""LOGS""
+  ADD PRIMARY KEY (""ID""),[*]
+  ADD KEY ""USERID"" (""USERID"") "; SQL statement:
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`) [42000-196]
+2018-05-27 21:24:01 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/badyo/equitysql.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at net.sourceforge.squirrel_sql.fw.sql.SQLDriverManager.getConnection(SQLDriverManager.java:133)
+	at net.sourceforge.squirrel_sql.client.mainframe.action.OpenConnectionCommand.executeConnect(OpenConnectionCommand.java:167)
+	at net.sourceforge.squirrel_sql.client.mainframe.action.OpenConnectionCommand.access$000(OpenConnectionCommand.java:45)
+	at net.sourceforge.squirrel_sql.client.mainframe.action.OpenConnectionCommand$1.run(OpenConnectionCommand.java:104)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/badyo/equitysql.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 30 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/badyo/equitysql.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 25 more
+2018-05-27 21:26:45 jdbc[4]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-196]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:185)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:127)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:735)
+	at org.h2.server.web.WebApp.login(WebApp.java:947)
+	at org.h2.server.web.WebApp.process(WebApp.java:210)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:169)
+	at org.h2.server.web.WebThread.process(WebThread.java:133)
+	at org.h2.server.web.WebThread.run(WebThread.java:89)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 14 more
+2018-05-27 21:31:28 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE ""REMOVAL""
+  ADD PRIMARY KEY (""ID""),[*]
+  ADD UNIQUE KEY ""ID_2"" (""ID""),
+  ADD KEY ""ITEMID"" (""ITEMID""),
+  ADD KEY ""USERID"" (""USERID""),
+  ADD KEY ""ID"" (""ID"") "; SQL statement:
+ALTER TABLE `removal`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_2` (`id`),
+  ADD KEY `itemid` (`itemid`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `id` (`id`) [42000-196]
+2018-05-27 21:31:37 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE ""REMOVAL""
+  ADD PRIMARY KEY (""ID""),[*]
+  ADD UNIQUE KEY ""ID_2"" (""ID"") "; SQL statement:
+ALTER TABLE `removal`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_2` (`id`) [42000-196]
+2018-05-27 21:32:23 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE ""EMAILCONFIG""
+  MODIFY ""ID"" INT(11) NOT NULL AUTO_INCREMENT,[*] AUTO_INCREMENT=3 "; SQL statement:
+ALTER TABLE `emailconfig`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3 [42000-196]
+2018-05-27 21:34:04 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE ""REMOVAL""
+  ADD CONSTRAINT ""REMOVAL_IBFK_1"" FOREIGN KEY (""USERID"") REFERENCES ""USER"" (""ID"") ON UPDATE CASCADE,[*]
+  ADD CONSTRAINT ""REMOVAL_IBFK_2"" FOREIGN KEY (""ITEMID"") REFERENCES ""ITEMS"" (""ID"") ON UPDATE CASCADE "; SQL statement:
+ALTER TABLE `removal`
+  ADD CONSTRAINT `removal_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `removal_ibfk_2` FOREIGN KEY (`itemid`) REFERENCES `items` (`id`) ON UPDATE CASCADE [42000-196]
+2018-05-27 21:34:16 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ADD[*] CONSTRAINT ""REMOVAL_IBFK_2"" FOREIGN KEY (""ITEMID"") REFERENCES ""ITEMS"" (""ID"") ON UPDATE CASCADE "; expected "ALTER, ANALYZE, {"; SQL statement:
+ADD CONSTRAINT `removal_ibfk_2` FOREIGN KEY (`itemid`) REFERENCES `items` (`id`) ON UPDATE CASCADE [42001-196]
+2018-05-27 21:34:34 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "REMOVAL_IBFK_1" already exists; SQL statement:
+ALTER TABLE `removal`
+  ADD CONSTRAINT `removal_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON UPDATE CASCADE [90045-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:109)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:77)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:101)
+	at org.h2.command.Command.executeUpdate(Command.java:260)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:192)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1380)
+	at org.h2.server.web.WebApp.query(WebApp.java:1053)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1015)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1002)
+	at org.h2.server.web.WebThread.process(WebThread.java:164)
+	at org.h2.server.web.WebThread.run(WebThread.java:89)
+	at java.base/java.lang.Thread.run(Unknown Source)
+2018-05-27 21:34:59 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE ""SHIPMENT""
+  ADD CONSTRAINT ""SHIPMENT_IBFK_1"" FOREIGN KEY (""ITEMID"") REFERENCES ""ITEMS"" (""ID"") ON UPDATE CASCADE,[*]
+  ADD CONSTRAINT ""SHIPMENT_IBFK_2"" FOREIGN KEY (""USERID"") REFERENCES ""USER"" (""ID"") ON UPDATE CASCADE "; SQL statement:
+ALTER TABLE `shipment`
+  ADD CONSTRAINT `shipment_ibfk_1` FOREIGN KEY (`itemid`) REFERENCES `items` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `shipment_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON UPDATE CASCADE [42000-196]
+2018-05-27 21:35:44 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Unknown data type: "USERID"; SQL statement:
+ALTER TABLE `shipment`
+  ADD KEY `userid` (`userid`) [50004-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:4169)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:4012)
+	at org.h2.command.Parser.parseAlterTableAddColumn(Parser.java:5903)
+	at org.h2.command.Parser.parseAlterTable(Parser.java:5615)
+	at org.h2.command.Parser.parseAlter(Parser.java:5007)
+	at org.h2.command.Parser.parsePrepared(Parser.java:348)
+	at org.h2.command.Parser.parse(Parser.java:321)
+	at org.h2.command.Parser.parse(Parser.java:293)
+	at org.h2.command.Parser.prepareCommand(Parser.java:258)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1380)
+	at org.h2.server.web.WebApp.query(WebApp.java:1053)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1015)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1002)
+	at org.h2.server.web.WebThread.process(WebThread.java:164)
+	at org.h2.server.web.WebThread.run(WebThread.java:89)
+	at java.base/java.lang.Thread.run(Unknown Source)
+2018-05-27 21:36:03 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Unknown data type: "("; SQL statement:
+ALTER TABLE `shipment`
+  ADD KEY  (`userid`) [50004-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:4169)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:4012)
+	at org.h2.command.Parser.parseAlterTableAddColumn(Parser.java:5903)
+	at org.h2.command.Parser.parseAlterTable(Parser.java:5615)
+	at org.h2.command.Parser.parseAlter(Parser.java:5007)
+	at org.h2.command.Parser.parsePrepared(Parser.java:348)
+	at org.h2.command.Parser.parse(Parser.java:321)
+	at org.h2.command.Parser.parse(Parser.java:293)
+	at org.h2.command.Parser.prepareCommand(Parser.java:258)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1380)
+	at org.h2.server.web.WebApp.query(WebApp.java:1053)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1015)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1002)
+	at org.h2.server.web.WebThread.process(WebThread.java:164)
+	at org.h2.server.web.WebThread.run(WebThread.java:89)
+	at java.base/java.lang.Thread.run(Unknown Source)
+2018-05-27 21:38:26 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/badyo/equitysql.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at Inventory.DBConnect.connect(DBConnect.java:26)
+	at Inventory.Login.loginAction(Login.java:182)
+	at Inventory.Login.jLabel10MouseClicked(Login.java:238)
+	at Inventory.Login.access$200(Login.java:24)
+	at Inventory.Login$3.mouseClicked(Login.java:139)
+	at java.awt.Component.processMouseEvent(Component.java:6536)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4534)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:90)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/badyo/equitysql.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 59 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/badyo/equitysql.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 54 more
+2018-05-27 21:39:13 jdbc[16]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-196]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:185)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:127)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at Inventory.DBConnect.connect(DBConnect.java:26)
+	at Inventory.Menu.FillTable(Menu.java:3406)
+	at Inventory.Menu.searchreduction4MouseClicked(Menu.java:3182)
+	at Inventory.Menu.access$3500(Menu.java:41)
+	at Inventory.Menu$44.mouseClicked(Menu.java:1785)
+	at java.awt.Component.processMouseEvent(Component.java:6536)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4534)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:90)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 45 more

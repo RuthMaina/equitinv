@@ -108,6 +108,7 @@ public class Login extends javax.swing.JFrame {
 
         jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setToolTipText("Show password");
+        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jCheckBox1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCheckBox1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Eye_20px.png"))); // NOI18N

@@ -72,6 +72,7 @@ public class Menu extends javax.swing.JFrame {
            holder = new PlaceHolder(ItemNameAdd, "Click the search icon to fill");
            holder = new PlaceHolder(NameRemove, "Click the search icon to fill");
         holder = new PlaceHolder(NameRemove, "Click the search icon to search for the item");
+         holder = new PlaceHolder(txtSearchStock, "type to search by item name");
     FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username from removal "+
                  "INNER JOIN items on removal.itemid = items.id INNER join user on removal.userid = user.id ");
     FillTable(tableAdditionRe,"SELECT Iname,shipdate,shipment.quantity,username from shipment "+
@@ -800,6 +801,7 @@ for (Component C : panel.getComponents())
         });
         tableItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tableItem.setRowHeight(18);
+        tableItem.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tableItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableItemMouseClicked(evt);
@@ -1074,7 +1076,9 @@ for (Component C : panel.getComponents())
                 return canEdit [columnIndex];
             }
         });
+        tblAddition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tblAddition.setRowHeight(18);
+        tblAddition.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tblAddition);
         if (tblAddition.getColumnModel().getColumnCount() > 0) {
             tblAddition.getColumnModel().getColumn(0).setMaxWidth(50);
@@ -1320,7 +1324,9 @@ for (Component C : panel.getComponents())
                 return canEdit [columnIndex];
             }
         });
+        tblRemoval.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tblRemoval.setRowHeight(18);
+        tblRemoval.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(tblRemoval);
         if (tblRemoval.getColumnModel().getColumnCount() > 0) {
             tblRemoval.getColumnModel().getColumn(0).setMaxWidth(50);
@@ -2484,6 +2490,11 @@ String ItemID = "";
             JOptionPane.showMessageDialog(null, "NEW RECORD SAVED");
              con.close();
              FillTable(tableItem,"SELECT `Id`, `Iname`, quantity from items");
+             FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username from removal "+
+                 "INNER JOIN items on removal.itemid = items.id INNER join user on removal.userid = user.id ");
+    FillTable(tableAdditionRe,"SELECT Iname,shipdate,shipment.quantity,username from shipment "+
+                 "INNER JOIN items on shipment.itemid = items.id INNER join user on shipment.userid = user.id WHERE status = 1");
+     FillTable(tblStock,"SELECT  `Iname`, quantity,unit,perunit from items");
         } catch (SQLException e ) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -2576,6 +2587,11 @@ public static class MyRunnable implements Runnable {
                 JOptionPane.showMessageDialog(null,"RECORD UPDATED SUCCESSFULLY");
                 con.close();
                 FillTable(tableItem,"SELECT `Id`, `Iname`, quantity from items");
+                FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username from removal "+
+                 "INNER JOIN items on removal.itemid = items.id INNER join user on removal.userid = user.id ");
+    FillTable(tableAdditionRe,"SELECT Iname,shipdate,shipment.quantity,username from shipment "+
+                 "INNER JOIN items on shipment.itemid = items.id INNER join user on shipment.userid = user.id WHERE status = 1");
+     FillTable(tblStock,"SELECT  `Iname`, quantity,unit,perunit from items");
             }
             catch (SQLException ex ) {
                 JOptionPane.showMessageDialog(null, ex);
@@ -2596,8 +2612,13 @@ public static class MyRunnable implements Runnable {
             con.close();
             JOptionPane.showMessageDialog(null, "Record Deleted");
             FillTable(tableItem,"SELECT `Id`, `Iname`, quantity from items");
+             FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username from removal "+
+                 "INNER JOIN items on removal.itemid = items.id INNER join user on removal.userid = user.id ");
+    FillTable(tableAdditionRe,"SELECT Iname,shipdate,shipment.quantity,username from shipment "+
+                 "INNER JOIN items on shipment.itemid = items.id INNER join user on shipment.userid = user.id WHERE status = 1");
+     FillTable(tblStock,"SELECT  `Iname`, quantity,unit,perunit from items");
         } catch (SQLException e ) {
-            if(e.getErrorCode() == 1451)
+            if(e.getErrorCode() == 23503)
             JOptionPane.showMessageDialog(null, "You cannot delete this field it has dependancies");
             else
                JOptionPane.showMessageDialog(null, e); 
@@ -2705,7 +2726,12 @@ if(tableModel.getRowCount() > 0){
         }
         JOptionPane.showMessageDialog(null,"SENT SUCCESSFULLY");
            FillTable(tableItem,"SELECT `Id`, `Iname`, quantity from items");
-      FillTable(tblAddition,"SELECT shipment.id,shipment.itemid, `Iname`, shipment.quantity from shipment INNER JOIN items on shipment.itemid = items.id where status = 0");      
+      FillTable(tblAddition,"SELECT shipment.id,shipment.itemid, `Iname`, shipment.quantity from shipment INNER JOIN items on shipment.itemid = items.id where status = 0"); 
+      FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username from removal "+
+                 "INNER JOIN items on removal.itemid = items.id INNER join user on removal.userid = user.id ");
+    FillTable(tableAdditionRe,"SELECT Iname,shipdate,shipment.quantity,username from shipment "+
+                 "INNER JOIN items on shipment.itemid = items.id INNER join user on shipment.userid = user.id WHERE status = 1");
+     FillTable(tblStock,"SELECT  `Iname`, quantity,unit,perunit from items");
 }
 else
   JOptionPane.showMessageDialog(null, "TABLE EMPTY, ADD ITEMS FIRST");
@@ -2832,6 +2858,11 @@ if(tableModel.getRowCount() > 0){
         setEmailThread();
            FillTable(tableItem,"SELECT `Id`, `Iname`, quantity from items");
       FillTable(tblRemoval,"SELECT removal.id,removal.itemid, `Iname`, removal.quantity,status from removal INNER JOIN items on removal.itemid = items.id where isRemoved = 0");
+FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username from removal "+
+                 "INNER JOIN items on removal.itemid = items.id INNER join user on removal.userid = user.id ");
+    FillTable(tableAdditionRe,"SELECT Iname,shipdate,shipment.quantity,username from shipment "+
+                 "INNER JOIN items on shipment.itemid = items.id INNER join user on shipment.userid = user.id WHERE status = 1");
+     FillTable(tblStock,"SELECT  `Iname`, quantity,unit,perunit from items");
 }
     else
   JOptionPane.showMessageDialog(null, "TABLE EMPTY, ADD ITEMS FIRST");     
@@ -2904,7 +2935,7 @@ if(tableModel.getRowCount() > 0){
             Map params = new HashMap();
             JRDataSource dataSource = new JRTableModelDataSource(tableModel);
             JasperPrint print = JasperFillManager.fillReport("src/reports/report1.jasper", params, dataSource);
-            JasperViewer.viewReport(print, true); // true == Exit on Close
+            JasperViewer.viewReport(print, false); // true == Exit on Close
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2989,11 +3020,11 @@ if(tableModel.getRowCount() > 0){
             DeleteNewUser.setBackground(new Color(244, 244, 244));
              SaveNewUser.setBackground(new Color(255,164,19));
         } catch (SQLException e ) {
-            if(e.getErrorCode() == 1451)
+            if(e.getErrorCode() == 23503)
             JOptionPane.showMessageDialog(null, "You cannot delete this field it has dependancies");
             else
                JOptionPane.showMessageDialog(null, e); 
-            // System.out.println(e.getErrorCode());
+            //System.out.println(e.getErrorCode());
         }  
     }//GEN-LAST:event_DeleteNewUserActionPerformed
 
@@ -3290,7 +3321,7 @@ if(tableModel.getRowCount() > 0){
                   areaEmail.append("Active type: " + DBConnect.rs.getString(8) + "\n" );
                    areaEmail.append("Email From: " + DBConnect.rs.getString(3) + "\n" );
                     areaEmail.append("Email To: " + DBConnect.rs.getString(4) + "\n" );
-                     areaEmail.append("Email password: " + DBConnect.rs.getString(5) + "\n" );
+                   
                           areaEmail.append("For Gmail you need to turn on the 'less secure app' setting\n" +
 "and also turn off 2 step authentication in your Gmail Account");
                     }
@@ -3301,7 +3332,7 @@ if(tableModel.getRowCount() > 0){
                   areaEmail.append("Active type: " + DBConnect.rs.getString(8) + "\n" );
                    areaEmail.append("Email From: " + DBConnect.rs.getString(3) + "\n" );
                     areaEmail.append("Email To: " + DBConnect.rs.getString(4) + "\n" );
-                     areaEmail.append("Email password: " + DBConnect.rs.getString(5) + "\n" );
+                   
                       //areaEmail.append("Email port: " + DBConnect.rs.getString(6) + "\n" );
                        areaEmail.append("Email website: " + DBConnect.rs.getString(7) + "\n" );
                         areaEmail.append("For Gmail you need to turn on the 'less secure app' setting\n" +

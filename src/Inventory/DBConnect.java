@@ -20,17 +20,26 @@ public class DBConnect {
     static PreparedStatement ps;
     static ResultSet rs;
      private static Connection con = null;
-    
-        public static Connection connect(){
+    public static Connection connect(){
             try {
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-              con = DriverManager.getConnection("jdbc:mysql://localhost:3306/einventory", "root", "");
+                Class.forName("org.h2.Driver").newInstance();
+              con = DriverManager.getConnection("jdbc:h2:~\\equitysql", "root", "");
               return con;
             }catch(ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException ex){
                   JOptionPane.showMessageDialog(null, ex);
                 return null;
             }
         }
+//        public static Connection connect(){
+//            try {
+//                Class.forName("com.mysql.jdbc.Driver").newInstance();
+//              con = DriverManager.getConnection("jdbc:mysql://localhost:3306/einventory", "root", "");
+//              return con;
+//            }catch(ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException ex){
+//                  JOptionPane.showMessageDialog(null, ex);
+//                return null;
+//            }
+//        }
        public void closeDatabase(){
            if (con != null){
                try{
