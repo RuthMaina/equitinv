@@ -12,6 +12,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class Menu extends javax.swing.JFrame {
          FillTable(tableItem,"SELECT `Id`, `Iname`, quantity from items");
           FillTable(tblRemoval,"SELECT removal.id,removal.itemid, `Iname`, removal.quantity,status from removal INNER JOIN items on removal.itemid = items.id where isRemoved = 0");
            FillTable(tblAddition,"SELECT shipment.id,shipment.itemid, `Iname`, shipment.quantity from shipment INNER JOIN items on shipment.itemid = items.id where status = 0");
-          setEmailThread();
+          setEmailThread(0);
     }
     
     //true
@@ -2547,9 +2548,10 @@ String ItemID = "";
         ItemID = hid;
     }//GEN-LAST:event_tableItemMouseClicked
 public static class MyRunnable implements Runnable {
- static int count = 0;
 
-        public MyRunnable() {
+static int i;
+        public MyRunnable(int x) {
+            i = x;
         }
     @Override
     public void run() {
@@ -2557,7 +2559,11 @@ public static class MyRunnable implements Runnable {
          //run code     
          Thread.sleep(5000);
          Menu m = new Menu();
-         m.sendEmail();
+         if(i == 0)
+             m.checklastemail();
+         else
+             m.sendEmail();
+        // m.checklastemail();
          //24 hour sleep
      } catch (InterruptedException ex) {
          Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -2565,6 +2571,38 @@ public static class MyRunnable implements Runnable {
         
     }
     }
+
+public void checklastemail(){
+    //check database time
+     try {
+            Connection con = DBConnect.connect();
+            String sql = "select * FROM emailt";
+            DBConnect.ps = con.prepareStatement(sql);
+            DBConnect.rs = DBConnect.ps.executeQuery();
+            if(DBConnect.rs.next()) {
+                 Date dateold = DBConnect.rs.getDate(2);
+                Date now = new Date();
+long diff = now.getTime() - dateold.getTime();
+			int diffDays = (int) (diff / (24 * 60 * 60 * 1000));
+               if(diffDays >= 5)
+               {
+                   //update databse
+                   String query = "UPDATE emailt SET laste = ?";
+               DBConnect.ps = con.prepareStatement(query);
+                java.sql.Date date1 = new java.sql.Date(now.getTime());
+                DBConnect.ps.setDate(1, date1);
+                DBConnect.ps.executeUpdate();
+                //send email           
+                sendEmail();
+               }
+            }
+            con.close();
+          
+        } catch (SQLException ex ) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+}
     private void btnUItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUItemActionPerformed
         // TODO add your handling code here:
          if("".equals(ItemID))
@@ -2855,7 +2893,7 @@ if(tableModel.getRowCount() > 0){
 
         }
         JOptionPane.showMessageDialog(null,"SENT SUCCESSFULLY");
-        setEmailThread();
+        setEmailThread(1);
            FillTable(tableItem,"SELECT `Id`, `Iname`, quantity from items");
       FillTable(tblRemoval,"SELECT removal.id,removal.itemid, `Iname`, removal.quantity,status from removal INNER JOIN items on removal.itemid = items.id where isRemoved = 0");
 FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username from removal "+
@@ -2930,11 +2968,14 @@ FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void btnReportStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportStockMouseClicked
+        String reportSource = "/reports/report1.jasper";
+InputStream is ;
         try {
+             is = getClass().getResourceAsStream(reportSource);
             DefaultTableModel tableModel=(DefaultTableModel) tblStock.getModel();
             Map params = new HashMap();
             JRDataSource dataSource = new JRTableModelDataSource(tableModel);
-            JasperPrint print = JasperFillManager.fillReport("src/reports/report1.jasper", params, dataSource);
+            JasperPrint print = JasperFillManager.fillReport(is, params, dataSource);
             JasperViewer.viewReport(print, false); // true == Exit on Close
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -3145,12 +3186,14 @@ FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username
     }//GEN-LAST:event_searchreduction1MouseClicked
 
     private void btnReportReductionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportReductionMouseClicked
-        // TODO add your handling code here:
-          try {
+        String reportSource = "/reports/reduction.jasper";
+InputStream is ;
+        try {
+             is = getClass().getResourceAsStream(reportSource);
             DefaultTableModel tableModel=(DefaultTableModel) tblReduction.getModel();
             Map params = new HashMap();
             JRDataSource dataSource = new JRTableModelDataSource(tableModel);
-            JasperPrint print = JasperFillManager.fillReport("src/reports/reduction.jasper", params, dataSource);
+            JasperPrint print = JasperFillManager.fillReport(is, params, dataSource);
             JasperViewer.viewReport(print, false); // true == Exit on Close
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -3158,12 +3201,14 @@ FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username
     }//GEN-LAST:event_btnReportReductionMouseClicked
 
     private void btnReportReduction1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportReduction1MouseClicked
-        // TODO add your handling code here:
-         try {
+        String reportSource = "/reports/additions.jasper";
+InputStream is ;
+        try {
+             is = getClass().getResourceAsStream(reportSource);
             DefaultTableModel tableModel=(DefaultTableModel) tableAdditionRe.getModel();
             Map params = new HashMap();
             JRDataSource dataSource = new JRTableModelDataSource(tableModel);
-            JasperPrint print = JasperFillManager.fillReport("src/reports/additions.jasper", params, dataSource);
+            JasperPrint print = JasperFillManager.fillReport(is, params, dataSource);
             JasperViewer.viewReport(print, false); // true == Exit on Close
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -3193,13 +3238,14 @@ FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username
     }//GEN-LAST:event_btnSave3MouseClicked
 
     private void btnReportReduction2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportReduction2MouseClicked
-        // TODO add your handling code here:
-          try {
+     String reportSource = "/reports/logs.jasper";
+InputStream is ;
+        try {
+             is = getClass().getResourceAsStream(reportSource);
             DefaultTableModel tableModel=(DefaultTableModel) tablelog.getModel();
             Map params = new HashMap();
             JRDataSource dataSource = new JRTableModelDataSource(tableModel);
-            JasperPrint print = JasperFillManager.fillReport("src/reports/logs"
-                    + ".jasper", params, dataSource);
+            JasperPrint print = JasperFillManager.fillReport(is, params, dataSource);
             JasperViewer.viewReport(print, false); // true == Exit on Close
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -3303,10 +3349,18 @@ FillTable(tblReduction,"SELECT Iname,removedate,removal.quantity,status,username
         });
         
     }
-    final void setEmailThread(){
-     MyRunnable myRunnable = new MyRunnable();
+      final void setEmailThread(int i){
+      if(i == 0)
+      {
+     MyRunnable myRunnable = new MyRunnable(0);
         Thread t = new Thread(myRunnable);
         t.start();
+      }
+      else{
+      MyRunnable myRunnable = new MyRunnable(1);
+        Thread t = new Thread(myRunnable);
+        t.start();
+      }
     }
     public final void loadCurrentEmail(){
          try{
